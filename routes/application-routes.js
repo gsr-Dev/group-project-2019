@@ -9,6 +9,12 @@ router.get("/", async function(req, res) {
     res.locals.allTestData = await testDao.retrieveAllTestData();
 
     res.render("home");
+}); 
+
+router.get("/signup", async function(req, res) { 
+
+
+res.render("sign_up"); 
 });
 
 module.exports = router;
