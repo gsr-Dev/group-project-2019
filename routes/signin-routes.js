@@ -69,10 +69,11 @@ router.post("/signin", async function(req, res) {
 // Whenever we navigate to /logout, delete any user object from the session. Then,
 // redirect to "/signin", supplying a "logged out successfully" message.
 router.get("/logout", function(req, res) {
-    if (req.session.user) {
+    const user = req.session.user;
+    if (user) {
         delete req.session.user;
     }
-    res.redirect("./blog?message=Successfully logged out!");
+    res.redirect("./?message=Successfully logged out!");
 });
 
 
