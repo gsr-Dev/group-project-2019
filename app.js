@@ -40,6 +40,14 @@ app.use(express.static(path.join(__dirname, "public")));
 const appRouter = require("./routes/application-routes.js");
 app.use(appRouter);
 
+// Setup sign in routes
+const signInRouter = require("./routes/signin-routes.js");
+app.use(signInRouter);
+
+// Setup sign up routes
+const signUpRouter = require("./routes/signup-routes.js");
+app.use(signUpRouter);
+
 // Start the server running.
 app.listen(port, function () {
     console.log(`App listening on port ${port}!`);
