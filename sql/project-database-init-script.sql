@@ -4,13 +4,15 @@
  * required.
  */
 
-drop table if exists test;
+drop table if exists users;
 
-create table test (
+ create table users (
+
     id integer not null primary key,
-    stuff text  
+    username varchar(64) unique not null,
+    password varchar(64) not null
 );
 
-insert into test (stuff) values
-    ('Things'),
-    ('More things');
+insert into users (id, username, password) values
+    (1, 'user1', 'pa55word'),
+    (2, 'user2', 'pa55word');   

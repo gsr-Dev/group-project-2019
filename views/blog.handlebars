@@ -1,0 +1,37 @@
+
+<div class="grid-container">
+    <div class="header" class="text-center border border-light p-5"><h1>Post your Article </h1></div>
+
+    <div id="articles" class="panel">
+        <h2>Articles</h2>
+
+        
+        <div id="articles-inner"></div>
+
+        <div id="article-load-button" class="article-load button">Edit articles</div>
+        
+        <div id="summernote"></div>
+        <script>
+        $('#summernote').summernote({
+            placeholder: 'Type your text',
+            tabsize: 2
+            //Height not set, editable area’s height will change according to contents.
+        });
+        </script>
+        
+    </div>
+
+    <div id="information" class="panel">
+        <h2>User Details</h2>
+
+        <div id="user-details">
+            <p><strong>User Name</strong>: <span id="user-details-first-name"></span></p>
+            <p><strong>Name</strong>: <span id="user-details-last-name"></span></p>              
+            <ul id="user-details-liked-articles"></ul>
+        </div>
+        
+    </div>
+    <button class="btn btn-primary btn-lg" type="submit" style="margin-right: 80%">Upload</button>
+        <a href="./">  <button class="btn btn-primary btn-lg">Logout</button> </a>
+    
+</div>
