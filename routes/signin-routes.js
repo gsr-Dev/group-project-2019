@@ -8,7 +8,7 @@ const messageDao = require("../modules/messages-dao.js");
 const verifyAuthenticated = require("../modules/verify-auth.js");
 
 // Make the "user" session object available to the Handlebars engine by adding it to res.locals.
-router.use(function(req, res, next) {
+router.use(function (req, res, next) {
     res.locals.user = req.session.user;
     next();
 });
@@ -16,9 +16,9 @@ router.use(function(req, res, next) {
 // Whenever we navigate to /signin, if we're already logged in, redirect to "/blog".
 // Otherwise, render the "signin" view, supplying the given "message" query parameter
 // to the view engine, if any.
-router.get("/signin", function(req, res) {
+router.get("/signin", function (req, res) {
 
-    
+
     if (req.session.user) {
         res.redirect("/blog");
     } else {
@@ -32,34 +32,66 @@ router.get("/signin", function(req, res) {
 // If they match a user in the database, add that user to the session and redirect to "/blog".
 // Otherwise, redirect to "/signin", with a "signin failed" message.
 
-router.post("/signin", async function(req, res) {
+router.post("/signin", async function (req, res) {
 
     // Get the username and password submitted in the form
     const username = req.body.username;
-    const password = req.body.password;
+    const password = req.body.password; 
+
+    // seperate out passwordHash from retrieveUserCredentials. password currently = boolean value
+
+    try {
+        const user = await userDao.retrieveUserWithCredentials(username, password);
+        if (user) {
+            req.session.user = user;
+            res.redirect('/blog');
+        } else {
+            res.redirect("./signin?message=Incorrect username or password");
+        }
+
+    } catch (err) {
+
+        console.log(err);
+    };
 
 
-            // Find a matching user in the database
-            const user = await userDao.retrieveUserWithCredentials(username, password);
-            // if there is a matching user...
-            if (user) {
-                // Auth success - add the user to the session, and redirect to the homepage.
-                req.session.user = user;
-                res.redirect("./blog");
-            }
-            // Otherwise, if there's no matching user...
-            else {
-                // Auth fail
-                res.redirect("./signin?message=Incorrect username or password");
-            }
 
+
+
+
+
+
+
+    // // if there is a matching user...
+    // if (user) {
+    //     // Auth success - add the user to the session, and redirect to the homepage.
+    //     req.session.user = user;
+    //     res.redirect("./blog");
+    // }
+
+    // // Otherwise, if there's no matching user...
+    // else {
+    //     // Auth fail
+
+    // try {
+    //     // Find a matching user in the database
+    //     const user = await userDao.retrieveUserWithCredentials(username, password);
+    //     req.session.user = user;
+    //     res.redirect("./blog");
+    // } catch (err) {
+    //     res.redirect("./signin?message=Incorrect username or password"); 
+    //     console.log(err);
+    // } 
+
+
+    //}
 });
 
 
 
 // Whenever we navigate to /logout, delete any user object from the session. Then,
 // redirect to "/signin", supplying a "logged out successfully" message.
-router.get("/logout", function(req, res) {
+router.get("/logout", function (req, res) {
     const user = req.session.user;
     if (user) {
         delete req.session.user;
@@ -73,7 +105,7 @@ router.get("/logout", function(req, res) {
 
 
 //May create a new route.js for below route handler
-router.get("/blog", function(req, res) {
+router.get("/blog", function (req, res) {
 
     res.render("blog");
 });
