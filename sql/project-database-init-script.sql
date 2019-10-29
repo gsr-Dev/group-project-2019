@@ -8,11 +8,8 @@ drop table if exists users;
 
  create table users (
 
-    id integer not null primary key,
+    id integer not null primary key, 
     username varchar(64) unique not null,
-    password varchar(64) not null
+    password varchar(64) not null, 
+    salthashpassword varchar(58) not null
 );
-
-insert into users (id, username, password) values
-    (1, 'user1', 'pa55word'),
-    (2, 'user2', 'pa55word');   

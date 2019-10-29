@@ -1,5 +1,6 @@
 const SQL = require("sql-template-strings");
-const dbPromise = require("./database.js");
+const dbPromise = require("./database.js"); 
+const passwordHash = require("password-hash"); 
 
 /**
  * Inserts the given user into the database. Then, reads the ID which the database auto-assigned, and adds it
@@ -9,11 +10,16 @@ const dbPromise = require("./database.js");
  */
 async function createUser(user) {
     const db = await dbPromise;
-    console.log("in createUser");
+    console.log("in createUser"); 
+    
+    // The users password is turned into a hashed password and sent to the project database  
+    let hashedPassword = passwordHash.generate(`${user.password}`)
+    
     const result = await db.run(SQL `
-        insert into users (username, password) values(${user.username}, ${user.password})`);
+        insert into users (username, password, salthashpassword) values(${user.username}, ${user.password}, ${hashedPassword})`
+        );
 
-        console.log(`${user.username} and ${user.password}`);
+        console.log(`${user.username} and ${user.password} and ${hashedPassword}`);
     // Get the auto-generated ID value, and assign it back to the user object.
     user.id = result.lastID;
 
