@@ -33,7 +33,7 @@ router.post("/signup", async function (req, res) {
         try {
             const createUser = await userDao.createUser(context);
             console.log(createUser);
-            res.redirect("./blog");//     res.redirect("./avatar");
+            res.redirect("./avatar");//     res.redirect("./avatar");
          } catch (err) { 
              console.log(err); 
              res.redirect("./signup?message=Username already exist!Please use another username.");
