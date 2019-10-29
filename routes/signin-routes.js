@@ -38,30 +38,21 @@ router.post("/signin", async function(req, res) {
     const username = req.body.username;
     const password = req.body.password;
 
-    
 
-    // // if there is a matching user...
-    // if (user) {
-    //     // Auth success - add the user to the session, and redirect to the homepage.
-    //     req.session.user = user;
-    //     res.redirect("./blog");
-    // }
-
-    // // Otherwise, if there's no matching user...
-    // else {
-    //     // Auth fail
-
-        try {
             // Find a matching user in the database
             const user = await userDao.retrieveUserWithCredentials(username, password);
-            req.session.user = user;
-            res.redirect("./blog");
-        } catch (err) {
-            res.redirect("./signin?message=Incorrect username or password");
-        }
-        
-        
-    //}
+            // if there is a matching user...
+            if (user) {
+                // Auth success - add the user to the session, and redirect to the homepage.
+                req.session.user = user;
+                res.redirect("./blog");
+            }
+            // Otherwise, if there's no matching user...
+            else {
+                // Auth fail
+                res.redirect("./signin?message=Incorrect username or password");
+            }
+
 });
 
 

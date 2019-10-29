@@ -23,6 +23,7 @@ async function createUser(user) {
     // Get the auto-generated ID value, and assign it back to the user object.
     user.id = result.lastID;
 
+    // return result for testing
     return result;
 }
 
