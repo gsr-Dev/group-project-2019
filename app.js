@@ -48,6 +48,10 @@ app.use(signInRouter);
 const signUpRouter = require("./routes/signup-routes.js");
 app.use(signUpRouter);
 
+// Setup avatar routes
+const avatarRouter = require("./routes/avatar-routes.js");
+app.use(avatarRouter);
+
 // Start the server running.
 app.listen(port, function () {
     console.log(`App listening on port ${port}!`);
