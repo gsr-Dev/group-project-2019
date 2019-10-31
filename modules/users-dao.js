@@ -54,6 +54,18 @@ async function retrieveUserById(id) {
 async function retrieveUserWithCredentials(username, password) {
     const db = await dbPromise;
 
+        const user = await db.get(SQL`
+        select * from users
+        where username = ${username}`); 
+
+    return user 
+
+
+} 
+
+async function createHashedPassword(username, password) {
+    const db = await dbPromise;
+
     try {
         const user = await db.get(SQL`
         select * from users
@@ -82,6 +94,8 @@ async function retrieveUserWithCredentials(username, password) {
     } catch (err) {
         return null;
     }
+
+
 }
 
 /**
@@ -129,5 +143,6 @@ module.exports = {
     retrieveUserWithCredentials,
     retrieveAllUsers,
     updateUser,
-    deleteUser
+    deleteUser, 
+    createHashedPassword
 };
