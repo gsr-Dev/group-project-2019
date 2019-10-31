@@ -41,7 +41,7 @@ router.post("/signin", async function (req, res) {
     // seperate out passwordHash from retrieveUserCredentials. password currently = boolean value
 
     try {
-        const user = await userDao.retrieveUserWithCredentials(username, password);
+        const user = await userDao.createHashedPassword(username, password);
         if (user) {
             req.session.user = user;
             res.redirect('/blog');
