@@ -6,10 +6,10 @@
     <div id="articles" class="panel">
         <h2>Articles</h2>
 
-        
+
         <div id="articles-inner"></div>
 
-       <!--    
+        <!--    
         
         <div id="summernote"></div>
         <script>
@@ -21,46 +21,48 @@
         </script>
         
    -->
-         <div id="article-load-button" class="article-load button">Edit articles</div>
-                <form action="/blog" method="POST" enctype="multipart/form-data">
-                    <textarea id="summernote" name="editordata"></textarea>
-                    <script>
-                        $('#summernote').summernote({
-                            placeholder: 'Type your text',
-                            tabsize: 2
-                            //Height not set, editable area’s height will change according to contents.
-                        });
-                    </script>
-                    
-                    <button id="save" class="btn btn-primary upload" onclick="save()" type="button">Save</button>
-                   
-                </form>  
-         </div> 
+        <div id="article-load-button" class="article-load button">Edit articles</div>
+        <form action="/blog" method="POST" enctype="multipart/form-data">
+            <textarea id="summernote" name="editordata"></textarea>
+            <script>
+                $('#summernote').summernote({
+                    placeholder: 'Type your text',
+                    tabsize: 2
+                    //Height not set, editable area’s height will change according to contents.
+                });
+            </script>
+
+            <button id="save" class="btn btn-primary upload" onclick="save()" type="button">Save</button>
+
+        </form>
+    </div>
     <div id="information" class="panel">
         <h2>User Details</h2>
 
         <div id="user-details">
-            <p><strong>User Name</strong>: <span id="user-details-first-name"></span></p>
-            <p><strong>Name</strong>: <span id="user-details-last-name"></span></p>
-            <ul id="user-details-liked-articles"></ul>
+            <p><strong>User Name</strong>: {{user.username}}</p>
+            <p><strong>Email</strong>: {{user.email}}</p>
+            <p><strong>Real Name</strong>: {{user.realName}}</p>
+            <p><strong>Date of Birth</strong>: {{user.dob}}</p>
+            <p><strong>About yourself</strong>: {{user.description}}</p>
         </div>
         <div>
-            
+
             <a href="./logout"> <button class="btn btn-primary btn-lg">Logout</button> </a>
         </div>
     </div>
-   
+
 
 </div>
 
-<script> 
+<script>
     const inner = document.querySelector('#articles-inner');
     const upload = document.querySelector('.upload');
 
     const edit = upload.addEventListener('click', function () {
-    const initia = document.querySelector('.card-block');
-    inner.innerHTML += $('#summernote').summernote('code');
-    initia.innerHTML =  '';
+        const initia = document.querySelector('.card-block');
+        inner.innerHTML += $('#summernote').summernote('code');
+        initia.innerHTML = '';
     });
- 
+
 </script>
