@@ -48,6 +48,10 @@ app.use(signInRouter);
 const signUpRouter = require("./routes/signup-routes.js");
 app.use(signUpRouter);
 
+//Setup blog routes
+const blogRouter = require("./routes/blog-routes.js");
+app.use(blogRouter);
+
 // Setup avatar routes
 const avatarRouter = require("./routes/avatar-routes.js");
 app.use(avatarRouter);
