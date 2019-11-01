@@ -12,17 +12,11 @@
 
                 {{#each userArticle}}
                 {{!-- <h1>{{this.title}}</h1> --}}
-                <a href="./individualArticle?message={{this.id}}"><h1>{{this.title}}</h1></a>
+                <a href="./individualArticle?message={{this.id}}" style="text-decoration: none "><h1>{{this.title}}</h1>
                 <h6>{{this.date}}</h6>
-                <p>{{{this.content}}}</p>
+                <p>{{{this.content}}}</p></a>
                 {{/each}}
             </div>
         </div>
     </div>
-
-
-
-
-
-    
-</div>
+    </div>
