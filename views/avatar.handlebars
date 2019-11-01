@@ -1,36 +1,47 @@
 <div class="container">
 
+    {{! Display a message if one was provided. }}
+    {{#if message}}
+    <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{message}}</a>
+    </div>
+    {{/if}}
 
-    <p>Please select your profile photo or upload one below:</p>
+    <form action="./avatar" method="POST" enctype="multipart/form-data">
 
-    {{! Display all predefined avatars here.}}
-    <div class="grid-3">
-        {{#each images}}
-        <div class="card">
-            <a href="./images/{{this}}"><img id="{{this}}" class="card-body card-img p-2" src="./images/{{this}}" onclick="saveImageName()"></a>
-            {{!-- <div class="card-body flex-row justify-center">
-                <p><em>{{this}}</em></p>
-            </div> --}}
+        <p>Please select your profile photo or upload one below:</p>
+        
+        <div class="form-group ">
+            {{! Display all predefined avatars here.}}
+            <div class="grid-3">
+                {{#each images}}
+                <div class="card">
+                    <label class="m-0">
+                        <input type="radio" name="radioImage" value="{{this}}" {{#if predefined}}disabled {{/if}}>
+                        <img class="card-body card-img p-2" src="./images/{{this}}">
+                    </label>
+                </div>
+                {{/each}}
+
+            </div>
         </div>
-        {{/each}}
-    </div>
+        
+        <div class="form-group">
+            <input id="inpFile" type="file" class="form-control-file" name="imageFile"
+                accept=".png,.jpg,.jpeg,.bmp,.gif">
+        </div>
+        {{!-- <div class="form-group">
+            <button type="submit">Click me to preview!</button>
+        </div> --}}
 
-    <div class="upload-image">
-        <br>
-        <form action="./uploadImage" method="POST" enctype="multipart/form-data">
+        <div class=" form-group flex-row justify-sb align-center">
+            <button class="btn btn-info btn-block my-4" type="submit" name="signup">Create account</button>
+        </div>
 
-            <div class="form-group">
-                <input id="inpFile" type="file" name="imageFile" accept=".png,.jpg,.jpeg,.bmp,.gif">
-            </div>
+    </form>
+</div>
 
-            <div class="form-group align-start">
-                <button type="submit">Upload!</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="flex-row justify-sb align-center">
-        <button class="btn btn-info btn-block my-4" type="submit" name="signup">Create account</button>
-    </div>
 
 </div>
+

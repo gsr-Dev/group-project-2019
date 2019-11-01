@@ -8,7 +8,10 @@ router.get("/", async function(req, res) {
     res.locals.message = req.query.message;
     //res.locals.allTestData = await testDao.retrieveAllTestData();
 
-    res.render("home");
+    const context = {
+        layout: "homeLayout"
+    }
+    res.render("home",context);
 }); 
 
 
