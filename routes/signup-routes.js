@@ -11,27 +11,22 @@ router.get("/signup", async function (req, res) {
 });
 
 router.post("/signup", async function (req, res) {
-
-
-    const context = {
-
-        username: req.body.username,
-        password: req.body.password,
-    }
-
+    const password = req.body.password;
     const rePassword = req.body.rePassword;
 
-    console.log(context.password);
+    console.log(password);
     console.log(rePassword);
 
-    if (context.password !=  rePassword.toString()) {
+    if (password !=  rePassword.toString()) {
         console.log("password not the same");
         res.redirect("./signup?message=Password doesn't match, please try again. ");
     } else {
 
         try {
-            const createUser = await userDao.createUser(context);
-            res.redirect("./avatar");
+            const sqlInfo = await userDao.createUser(req.body);
+            const createUser = await userDao.retrieveUserById(sqlInfo.lastID);
+            req.session.user = createUser;
+            res.redirect("./avatar");//     res.redirect("./avatar");
          } catch (err) { 
              console.log(err); 
              res.redirect("./signup?message=Username already exist!Please use another username.");

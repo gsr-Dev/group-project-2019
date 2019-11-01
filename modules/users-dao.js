@@ -16,10 +16,10 @@ async function createUser(user) {
     let hashedPassword = passwordHash.generate(`${user.password}`)
 
     const result = await db.run(SQL`
-        insert into users (username, password, salthashpassword) values(${user.username}, ${user.password}, ${hashedPassword})`
+        insert into users (username, password, salthashpassword, email, dob, realName, description) values(${user.username}, ${user.password}, ${hashedPassword}, ${user.email}, ${user.dob}, ${user.realName}, ${user.description})`
     );
 
-    console.log(`created username is ${user.username}, password is ${user.password} and hashedpassword is ${hashedPassword}`);
+    console.log(`${user.username} and ${user.password} and ${hashedPassword} and ${user.dob} and ${user.realName} and ${user.description}`);
     // Get the auto-generated ID value, and assign it back to the user object.
     user.id = result.lastID;
 
@@ -48,16 +48,23 @@ async function retrieveUserById(id) {
  * If there is no such user, undefined will be returned.
  * 
  * @param {string} username the user's username
- * @param {string} password the user's password
  */
 // seperate out passwordHash from retrieveUserCredentials. password currently = boolean value
-async function retrieveUserWithCredentials(username, password) {
+async function retrieveUserByUserName(username) {
+    const db = await dbPromise;
+
+    const user = await db.get(SQL`
+        select * from users
+        where username = ${username}`);
+
+    return user
+}
+
+async function verifyCredentials(username, password) {
     const db = await dbPromise;
 
     try {
-        const user = await db.get(SQL`
-        select * from users
-        where username = ${username}`);
+        const user = await retrieveUserByUserName(username);
 
         const hashedPassword = await db.get(SQL`
         select salthashpassword from users 
@@ -107,7 +114,7 @@ async function updateUser(user) {
 
     await db.run(SQL`
         update users
-        set username = ${user.username}, password = ${user.password}, name = ${user.name}
+        set username = ${user.username}, password = ${user.password}, realName = ${user.realName}
         where id = ${user.id}`);
 }
 
@@ -145,10 +152,11 @@ async function saveAvatar(username, imgName) {
 module.exports = {
     createUser,
     retrieveUserById,
-    retrieveUserWithCredentials,
+    retrieveUserByUserName,
     retrieveAllUsers,
     updateUser,
     deleteUser,
     retrieveLastUser,
-    saveAvatar
+    saveAvatar,
+    verifyCredentials
 };

@@ -1,5 +1,5 @@
-
 <div class="grid-container">
+<<<<<<< HEAD
 
     {{! Display a message if one was provided. }}
     {{#if message}}
@@ -11,37 +11,72 @@
 
 
     <div class="header" class="text-center border border-light p-5"><h1>Post your Article </h1></div>
+=======
+    <div class="header" class="text-center border border-light p-5">
+        <h1>Post your Article </h1>
+    </div>
+>>>>>>> origin/master
 
     <div id="articles" class="panel">
         <h2>Articles</h2>
 
-        
+
         <div id="articles-inner"></div>
 
-        <div id="article-load-button" class="article-load button">Edit articles</div>
+        <!--    
         
         <div id="summernote"></div>
         <script>
-        $('#summernote').summernote({
-            placeholder: 'Type your text',
-            tabsize: 2
-            //Height not set, editable area’s height will change according to contents.
-        });
+            $('#summernote').summernote({
+                placeholder: 'Type your text',
+                tabsize: 2
+                //Height not set, editable area’s height will change according to contents.
+            });
         </script>
         
-    </div>
+   -->
+        <div id="article-load-button" class="article-load button">Edit articles</div>
+        <form action="/blog" method="POST" enctype="multipart/form-data">
+            <textarea id="summernote" name="editordata"></textarea>
+            <script>
+                $('#summernote').summernote({
+                    placeholder: 'Type your text',
+                    tabsize: 2
+                    //Height not set, editable area’s height will change according to contents.
+                });
+            </script>
 
+            <button id="save" class="btn btn-primary upload" onclick="save()" type="button">Save</button>
+
+        </form>
+    </div>
     <div id="information" class="panel">
         <h2>User Details</h2>
 
         <div id="user-details">
-            <p><strong>User Name</strong>: <span id="user-details-first-name"></span></p>
-            <p><strong>Name</strong>: <span id="user-details-last-name"></span></p>              
-            <ul id="user-details-liked-articles"></ul>
+            <p><strong>User Name</strong>: {{user.username}}</p>
+            <p><strong>Email</strong>: {{user.email}}</p>
+            <p><strong>Real Name</strong>: {{user.realName}}</p>
+            <p><strong>Date of Birth</strong>: {{user.dob}}</p>
+            <p><strong>About yourself</strong>: {{user.description}}</p>
         </div>
-        
+        <div>
+
+            <a href="./logout"> <button class="btn btn-primary btn-lg">Logout</button> </a>
+        </div>
     </div>
-    <button class="btn btn-primary btn-lg" type="submit" style="margin-right: 80%">Upload</button>
-        <a href="./logout">  <button class="btn btn-primary btn-lg">Logout</button> </a>
-    
+
+
 </div>
+
+<script>
+    const inner = document.querySelector('#articles-inner');
+    const upload = document.querySelector('.upload');
+
+    const edit = upload.addEventListener('click', function () {
+        const initia = document.querySelector('.card-block');
+        inner.innerHTML += $('#summernote').summernote('code');
+        initia.innerHTML = '';
+    });
+
+</script>
