@@ -20,3 +20,14 @@ description TEXT
     image varchar(256) not null,
     foreign key (username) references users(username)
 );
+
+drop table if exists articles;
+
+create table articles (
+    id integer not null primary key, 
+    username varchar(64) unique not null,
+    title varchar(128) not null,
+    date datetime,
+    content text,
+    foreign key (username) references users(username)
+)

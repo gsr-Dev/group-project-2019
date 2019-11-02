@@ -69,8 +69,6 @@ router.post("/avatar", upload.single("imageFile"), async function (req, res) {
         res.redirect("/blog?message=You have successfully created an account!");
     }
 
-    
-
 
 });
 
