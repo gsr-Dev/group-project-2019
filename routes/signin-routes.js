@@ -42,7 +42,7 @@ router.post("/signin", async function (req, res) {
         const user = await userDao.verifyCredentials(username, password);
         if (user) {
             req.session.user = user;
-            res.redirect('/blog');
+            res.redirect("/blog");
         } else {
             res.redirect("./signin?message=Incorrect username or password");
         }
@@ -57,23 +57,13 @@ router.post("/signin", async function (req, res) {
 
 // Whenever we navigate to /logout, delete any user object from the session. Then,
 // redirect to "/signin", supplying a "logged out successfully" message.
-router.get("/logout", function (req, res) {
+router.get("/signout", function (req, res) {
     const user = req.session.user;
     if (user) {
         delete req.session.user;
     }
-    res.redirect("./?message=Successfully logged out!");
+    res.redirect("./?message=Successfully signed out!");
 });
 
-
-
-
-
-
-//May create a new route.js for below route handler
-router.get("/blog", function (req, res) {
-
-    res.render("blog");
-});
 
 module.exports = router;

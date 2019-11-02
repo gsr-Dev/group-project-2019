@@ -18,7 +18,9 @@ app.set("view engine", "handlebars");
 
 // Setup body-parser
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({extended: false}));
+//app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json({limit: '5mb', extended: true}))
+app.use(bodyParser.urlencoded({limit: '5mb', extended: true}))
 
 // Setup cookie-parser
 const cookieParser = require("cookie-parser");
@@ -37,7 +39,7 @@ const path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
 
 // Setup routes
-const appRouter = require("./routes/application-routes.js");
+const appRouter = require("./routes/home.js");
 app.use(appRouter);
 
 // Setup sign in routes
@@ -48,13 +50,17 @@ app.use(signInRouter);
 const signUpRouter = require("./routes/signup-routes.js");
 app.use(signUpRouter);
 
+// Setup avatar routes
+const avatarRouter = require("./routes/avatar-routes.js");
+app.use(avatarRouter);
+
 //Setup blog routes
 const blogRouter = require("./routes/blog-routes.js");
 app.use(blogRouter);
 
-// Setup avatar routes
-const avatarRouter = require("./routes/avatar-routes.js");
-app.use(avatarRouter);
+// Setup myarticles routes
+const myarticlesRouter = require("./routes/myarticles-routes.js");
+app.use(myarticlesRouter);
 
 // Start the server running.
 app.listen(port, function () {

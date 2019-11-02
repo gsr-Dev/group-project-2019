@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="header" class="text-center border border-light p-5">
+        <h1>Post your Article </h1>
+    </div>
+
+    <div id="articles" class="panel">
+        <h2>Articles</h2>
+        <div id="articles-inner"></div>
+
+        <div id="article-load-button" class="article-load button">Edit articles</div>
+        <form action="/blog" method="POST">
+            <textarea id="summernote" name="editordata"></textarea>
+            <button id="save" class="btn btn-primary upload" type="submit">Save</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    $('#summernote').summernote({
+        placeholder: 'Type your text',
+        tabsize: 2
+        //Height not set, editable area’s height will change according to contents.
+    });
+
+    const upload = document.querySelector('#save');
+    const inner = document.querySelector('#articles-inner');
+    const editor = document.querySelector('.card-block');
+    upload.addEventListener('click', function () {
+        $("#summernote").val($('#summernote').summernote('code'));
+        inner.innerHTML += $('#summernote').summernote('code');
+        editor.innerHTML = ''
+    });
+
+</script>
