@@ -44,12 +44,11 @@ async function retrieveUserById(id) {
 }
 
 /**
- * Gets the user with the given username and password from the database.
+ * Gets the user with the given username from the database.
  * If there is no such user, undefined will be returned.
  * 
  * @param {string} username the user's username
  */
-// seperate out passwordHash from retrieveUserCredentials. password currently = boolean value
 async function retrieveUserByUserName(username) {
     const db = await dbPromise;
 
@@ -57,9 +56,18 @@ async function retrieveUserByUserName(username) {
         select * from users
         where username = ${username}`);
 
-    return user
+    return user;
 }
+/**
+ * 
+ * Gets the user with the given username and password from the database.
+ * If there is no such user, undefined will be returned.
+ * 
+ * @param {string} username the user's username
+ * @param {string} password the user's password
+ */
 
+ // seperate out passwordHash from retrieveUserCredentials. password currently = boolean value
 async function verifyCredentials(username, password) {
     const db = await dbPromise;
 

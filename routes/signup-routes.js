@@ -5,10 +5,30 @@ const router = express.Router();
 const userDao = require("../modules/users-dao.js");
 
 router.get("/signup", async function (req, res) {
-    const newMessage = await userDao.retrieveAllUsers();
     res.locals.message = req.query.message;
     res.render("signup");
 });
+
+router.get("/signup.json", async function (req, res) {
+    const allUsers = await userDao.retrieveAllUsers();
+    res.json(allUsers);
+});
+
+
+function makeArray(input) {
+    if (input === undefined) {
+        return [];
+    }
+    else if (Array.isArray(input)) {
+        return input;
+    }
+    else {
+        return [input];
+    }
+}
+
+
+
 
 router.post("/signup", async function (req, res) {
     const password = req.body.password;

@@ -5,7 +5,7 @@ const router = express.Router();
 const userDao = require("../modules/users-dao.js");
 const messageDao = require("../modules/messages-dao.js");
 
-const verifyAuthenticated = require("../modules/verify-auth.js");
+
 
 // Make the "user" session object available to the Handlebars engine by adding it to res.locals.
 router.use(function (req, res, next) {
