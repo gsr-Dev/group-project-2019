@@ -16,7 +16,6 @@ async function createUser(user) {
 
     // The users password is turned into a hashed password and sent to the project database  
     let hashedPassword = passwordHash.generate(`${user.password}`)
-    console.log(`created hashedpassword ${hashedPassword} for ${user.password}`);
 
     const result = await db.run(SQL`
     insert into users (username, password, salthashpassword, email, dob, realName, description) values(${user.username}, ${user.password}, ${hashedPassword}, ${user.email}, ${user.dob}, ${user.realName}, ${user.description})`
@@ -96,9 +95,12 @@ async function verifyCredentials(username, password) {
 
     try {
         const user = await retrieveUserByUserName(username);
+        console.log(`user${user}`);
         const hashedPassword = await db.get(SQL`
         select salthashpassword from users 
         where username = ${username}`);
+        console.log(`hashedpassword${JSON.stringify(hashedPassword)}`);
+
         //Object.values returns the hash string as an array
         const hashOnly = Object.values(hashedPassword);
 
@@ -165,21 +167,22 @@ async function updateUser(user) {
 
     await db.run(SQL`
         update users
-        set username = ${user.username}, password = ${user.password}, realName = ${user.realName}
-        where id = ${user.id}`);
+        set username = ${user.username}, realName = ${user.realName}, password = ${user.password}, dob = ${user.dob}, 
+        email = ${user.email}, description = ${user.description}
+        where id = ${user.id}`);      
 }
 
 /**
- * Deletes the user with the given id from the database.
+ * Deletes the user with the given username from the database.
  * 
- * @param {number} id the user's id
+ * @param {number} username the user's username
  */
-async function deleteUser(id) {
+async function deleteUser(username) {
     const db = await dbPromise;
 
     await db.run(SQL`
         delete from users
-        where id = ${id}`);
+        where username = ${username}`);
 }
 
 async function retrieveLastUser() {
@@ -192,6 +195,28 @@ async function retrieveLastUser() {
     return user;
 }
 
+
+/**
+ * Retrieve users who are indicated as 'Y' for signedIn status from the database.
+ * 
+ */
+// async function retrieveSignedInUsers() {
+//     const db = await dbPromise;
+
+//     const user = await db.all(SQL`
+//         select * from users
+//         where is_signedIn = 1`);
+
+//     return users;
+// }
+
+// async function signInBoolean(username) {
+//     const db = await dbPromise;
+
+//     await db.run(SQL`
+//     alter users (is_signedIn) values(1)`);
+// }
+
 async function saveAvatar(username, imgName) {
     const db = await dbPromise;
 
@@ -199,7 +224,24 @@ async function saveAvatar(username, imgName) {
     insert into profile (username, image) values(${username}, ${imgName})`);
 }
 
+async function updateAvatar(username, imgName) {
+    const db = await dbPromise;
 
+    await db.run(SQL`
+        update profile
+        set image = ${imgName} 
+        where username = ${username}`);      
+}
+
+async function retrieveAvatar(username) {
+    const db = await dbPromise;
+
+    const user = await db.get(SQL`
+        select image from profile
+        where username = ${username}`);
+
+    return user;
+}
 
 
 // Export functions.
@@ -210,11 +252,13 @@ module.exports = {
     retrieveLastUser,
     retrieveAllUsers,
     retrieverUserEmail,
+    retrieveAvatar,
     updatePassword,
     updateUser,
     deleteUser,
     saveAvatar,
-    verifyCredentials
+    verifyCredentials,
+    updateAvatar
 
 
 };

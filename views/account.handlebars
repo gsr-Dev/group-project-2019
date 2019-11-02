@@ -5,9 +5,10 @@
         <!-- left column -->
         <div class="col-md-3">
             <div class="text-center">
-                <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-                <p>Upload a different photo...</p>
-                <input type="file" class="form-control">
+                <img src="./images/{{avatar}}" class="avatar img-circle" alt="avatar">
+
+                <a href="./avatar?action=updateAvatar">Update Avatar</a>
+
                 <br>
                 <p><strong>User Name</strong>: {{user.username}}</p>
                 <p><strong>Real Name</strong>: {{user.realName}}</p>
@@ -19,72 +20,63 @@
 
         <!-- edit form column -->
         <div class="col-md-9 personal-info">
-            <div class="alert alert-info alert-dismissable">
-                <a class="panel-close close" data-dismiss="alert">×</a>
-                <i class="fa fa-coffee"></i>
-                For updating user details, please fill in the below details and click 'Save Changes'.
+            {{! Display a message if one was provided. }}
+            {{#if message}}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{message}}
             </div>
-            <h3>Personal info</h3>
+            {{/if}}
 
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">First name:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" type="text" value="first name">
-                    </div>
+
+            {{!-- <h3>Personal info</h3> --}}
+            <form action="./account" method="POST" class=="form-horizontal">
+
+                <p class="h4 mb-4">Update your account information</p>
+                <div class="flex-col mb">
+                    <label for="txtUsername">Username:</label>
+                    <input class="form-control mb-4" type="text" name="username" id="txtUsername"
+                        value="{{user.username}}">
+
                 </div>
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Last name:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" type="text" value="last time">
-                    </div>
+
+                <div class="flex-col mb">
+                    <label for="txtPassword">Password:</label>
+                    <input class="form-control mb-4" type="password" name="password" id="txtPassword"
+                        value="{{user.password}}">
                 </div>
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Date of Birth:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" type="date" value="newdate">
-                    </div>
+
+                <div class="flex-col mb">
+                    <label for="txtName">Re-enter Password:</label>
+                    <input class="form-control mb-4" type="password" name="rePassword" id="txtRePassword">
                 </div>
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Email:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" type="text" value="newaddress@gmail.com">
-                    </div>
+
+                <div class="flex-col mb">
+                    <label for="txtRealName">Real Name:<span id="user-details-realName"></span></label>
+                    <input class="form-control mb-4" type="text" name="realName" id="realName"
+                        value="{{user.realName}}">
                 </div>
-                   <div class="form-group">
-                    <label class="col-lg-3 control-label">Username:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" type="text" value="new username">
-                    </div>
+
+                <div class="flex-col mb">
+                    <label for="txtEmailAdd">Email:<span id="user-details-email"></span></label>
+                    <input class="form-control mb-4" type="text" name="email" id="email" value="{{user.email}}">
                 </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Description:</label>
-                    <div class="col-md-8">
-                        <input class="form-control" type="text" value="new description">
-                    </div>
+
+                <div class="flex-col mb">
+                    <label for="txtDoB">Date of Birth:<span id="user-details-dob"></span></label>
+                    <input class="form-control mb-4" type="date" name="dob" id="dob" value="{{user.dob}}">
                 </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Password:</label>
-                    <div class="col-md-8">
-                        <input class="form-control" type="password" value="11111122333">
-                    </div>
+
+                <div class="flex-col mb">
+                    <label for="txtDescription">About yourself:<span id="user-details-description"></span></label>
+                    <input class="form-control mb-4" type="text" name="description" id="description"
+                        value="{{user.description}}">
                 </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Confirm password:</label>
-                    <div class="col-md-8">
-                        <input class="form-control" type="password" value="11111122333">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label"></label>
-                    <div class="col-md-8">
-                        <input type="button" class="btn btn-primary" value="Save Changes">
-                        <span></span>
-                        <input type="reset" class="btn btn-default" value="Cancel">
-                    </div>
+
+                <div class="flex-row justify-sb align-center">
+                    <button class="btn btn-info" type="submit" name="saveChanges">Save Changes</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<hr>
