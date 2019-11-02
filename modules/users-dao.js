@@ -1,7 +1,7 @@
 const SQL = require("sql-template-strings");
 const dbPromise = require("./database.js");
 const passwordHash = require("password-hash");
-const articles = require("./articles.js");
+
 
 /**
  * Inserts the given user into the database. Then, reads the ID which the database auto-assigned, and adds it
@@ -158,31 +158,7 @@ async function saveAvatar(username, imgName) {
 }
 
 
-async function addPredefinedArticle() {
 
-    const db = await dbPromise;
-
-    for (let i = 0; i < articles.length; i++) {
-
-        const art = articles[i];
-        console.log("in addPredefinedArticle");
-
-        await db.run(SQL`
-            insert into articles (username, title, date, content)
-            values (${art.username}, ${art.title}, ${art.date}, ${art.content})`);
-    }   
-
-}
-
-async function getPredefinedArticle() {
-    const db = await dbPromise;
-
-    const articles = await db.all(SQL`
-        select * from articles`);
-
-    return articles;
-
-}
 
 // Export functions.
 module.exports = {
@@ -194,7 +170,5 @@ module.exports = {
     deleteUser,
     retrieveLastUser,
     saveAvatar,
-    verifyCredentials,
-    addPredefinedArticle,
-    getPredefinedArticle
+    verifyCredentials
 };

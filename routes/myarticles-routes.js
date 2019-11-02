@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 // The DAO that handles CRUD operations for users.
-const articlesDao = require("../modules/articles-dao.js");
+//const articlesDao = require("../modules/articles-dao.js");
 
-router.get("/blog", async function (req, res) {
+router.get("/myArticles", async function (req, res) {
 
     // const article = req.body.editordata;
     // const user = req.session.unser;
@@ -13,14 +13,14 @@ router.get("/blog", async function (req, res) {
     // const file = await blogDao.createArticle(article,user);
     // const createArticle = await blogDao.retrieveArticle(file.lastID);
     
-    const getPredefinedArticles = await articlesDao.getPredefinedArticle();
+    //const getPredefinedArticles = await articlesDao.getPredefinedArticle();
 
     const context = {
-        predefinedArticles : getPredefinedArticles,
+        //predefinedArticles : getPredefinedArticles,
         layout: "blogLayout"
     }
     
-    res.render("blog", context);
+    res.render("myarticles", context);
 })
 
 module.exports = router;

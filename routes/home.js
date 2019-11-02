@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // The DAO that handles CRUD operations for users.
-const userDao = require("../modules/users-dao.js");
+const articlesDao = require("../modules/articles-dao.js");
 
 
 router.get("/", async function(req, res) {
@@ -10,12 +10,12 @@ router.get("/", async function(req, res) {
     res.locals.title = "GSHK Project!";
     res.locals.message = req.query.message;
     //res.locals.allTestData = await testDao.retrieveAllTestData();
-    await userDao.addPredefinedArticle();
-    const getPredefinedArticles = await userDao.getPredefinedArticle();
+    //await articleDao.addPredefinedArticle();
+    const getPredefinedArticles = await articlesDao.getPredefinedArticle();
     
-    console.log(getPredefinedArticles);
+    //console.log(getPredefinedArticles);
     const context = {
-        articles : getPredefinedArticles,
+        predefinedArticles : getPredefinedArticles,
         layout: "homeLayout"
     }
 
