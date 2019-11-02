@@ -1,6 +1,7 @@
 const SQL = require("sql-template-strings");
 const dbPromise = require("./database.js");
 const passwordHash = require("password-hash");
+const articles = require("./articles.js");
 
 /**
  * Inserts the given user into the database. Then, reads the ID which the database auto-assigned, and adds it
@@ -44,12 +45,11 @@ async function retrieveUserById(id) {
 }
 
 /**
- * Gets the user with the given username and password from the database.
+ * Gets the user with the given username from the database.
  * If there is no such user, undefined will be returned.
  * 
  * @param {string} username the user's username
  */
-// seperate out passwordHash from retrieveUserCredentials. password currently = boolean value
 async function retrieveUserByUserName(username) {
     const db = await dbPromise;
 
@@ -57,9 +57,18 @@ async function retrieveUserByUserName(username) {
         select * from users
         where username = ${username}`);
 
-    return user
+    return user;
 }
+/**
+ * 
+ * Gets the user with the given username and password from the database.
+ * If there is no such user, undefined will be returned.
+ * 
+ * @param {string} username the user's username
+ * @param {string} password the user's password
+ */
 
+ // seperate out passwordHash from retrieveUserCredentials. password currently = boolean value
 async function verifyCredentials(username, password) {
     const db = await dbPromise;
 
@@ -148,6 +157,33 @@ async function saveAvatar(username, imgName) {
     insert into profile (username, image) values(${username}, ${imgName})`);
 }
 
+
+async function addPredefinedArticle() {
+
+    const db = await dbPromise;
+
+    for (let i = 0; i < articles.length; i++) {
+
+        const art = articles[i];
+        console.log("in addPredefinedArticle");
+
+        await db.run(SQL`
+            insert into articles (username, title, date, content)
+            values (${art.username}, ${art.title}, ${art.date}, ${art.content})`);
+    }   
+
+}
+
+async function getPredefinedArticle() {
+    const db = await dbPromise;
+
+    const articles = await db.all(SQL`
+        select * from articles`);
+
+    return articles;
+
+}
+
 // Export functions.
 module.exports = {
     createUser,
@@ -158,5 +194,7 @@ module.exports = {
     deleteUser,
     retrieveLastUser,
     saveAvatar,
-    verifyCredentials
+    verifyCredentials,
+    addPredefinedArticle,
+    getPredefinedArticle
 };

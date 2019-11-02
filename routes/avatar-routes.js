@@ -69,8 +69,6 @@ router.post("/avatar", upload.single("imageFile"), async function (req, res) {
         res.redirect("/blog?message=You have successfully created an account!");
     }
 
-    
-
 
 });
 
@@ -91,17 +89,5 @@ router.post("/uploadImage", upload.single("imageFile"), async function(req, res)
     res.redirect("/avatar");
 });
 
-
-function makeArray(input) {
-    if (input === undefined) {
-        return [];
-    }
-    else if (Array.isArray(input)) {
-        return input;
-    }
-    else {
-        return [input];
-    }
-}
 
 module.exports = router;
