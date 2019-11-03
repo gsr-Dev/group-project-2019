@@ -62,6 +62,14 @@ app.use(blogRouter);
 const myarticlesRouter = require("./routes/myarticles-routes.js");
 app.use(myarticlesRouter);
 
+// Setup addarticles routes
+const addArticlesRouter = require("./routes/addarticles-routes.js");
+app.use(addArticlesRouter);
+
+// Setup addarticles routes
+const individualArticleRouter = require("./routes/individualarticle-routes.js");
+app.use(individualArticleRouter);
+
 // Start the server running.
 app.listen(port, function () {
     console.log(`App listening on port ${port}!`);

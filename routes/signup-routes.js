@@ -15,21 +15,6 @@ router.get("/signup.json", async function (req, res) {
 });
 
 
-function makeArray(input) {
-    if (input === undefined) {
-        return [];
-    }
-    else if (Array.isArray(input)) {
-        return input;
-    }
-    else {
-        return [input];
-    }
-}
-
-
-
-
 router.post("/signup", async function (req, res) {
     const password = req.body.password;
     const rePassword = req.body.rePassword;
