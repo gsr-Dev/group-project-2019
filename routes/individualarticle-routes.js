@@ -5,22 +5,24 @@ const router = express.Router();
 const articlesDao = require("../modules/articles-dao.js");
 
 
-router.get("/myArticles", async function (req, res) {
+router.get("/individualArticle", async function (req, res) {
+    const articleID = req.query.message;
+
     const user = req.session.user;
 
     if (user == undefined) {
         res.redirect("./?message=You have signed out, please sign in again!");
     } else {
 
-        const getUserArticle = await articlesDao.getUserArticles(user);
-        console.log(getUserArticle);
+        const getArticleByID = await articlesDao.getArticleById(articleID);
+        console.log(getArticleByID);
 
         const context = {
-            userArticle : getUserArticle,
+            article: getArticleByID,
             layout: "blogLayout"
         }
 
-        res.render("myArticles", context);
+        res.render("individualArticle", context);
     }
 })
 
