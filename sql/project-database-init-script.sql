@@ -25,7 +25,7 @@ drop table if exists articles;
 
 create table articles (
     id integer not null primary key, 
-    username varchar(64) unique not null,
+    username varchar(64) not null,
     title varchar(128) not null,
     date datetime,
     content text,
