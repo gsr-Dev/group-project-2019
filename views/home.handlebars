@@ -24,16 +24,15 @@
   </div>
 </header>
 
-{{!-- <section class="my-5"> --}}
+
   <div class="container">
     <div class="row">
       <div class="col-md-10 mx-auto">
         {{#each predefinedArticles}}
         <h1>{{this.title}}</h1>
-        <h2>{{this.date}}</h2>
-        <p>{{this.content}}</p>
+        <h6>{{this.date}}</h6>
+        <p>{{{this.content}}}</p>
         {{/each}}
       </div>
     </div>
   </div>
-{{!-- </section> --}}

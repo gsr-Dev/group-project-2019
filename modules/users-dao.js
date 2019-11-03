@@ -20,7 +20,6 @@ async function createUser(user) {
         insert into users (username, password, salthashpassword, email, dob, realName, description) values(${user.username}, ${user.password}, ${hashedPassword}, ${user.email}, ${user.dob}, ${user.realName}, ${user.description})`
     );
 
-    console.log(`${user.username} and ${user.password} and ${hashedPassword} and ${user.dob} and ${user.realName} and ${user.description}`);
     // Get the auto-generated ID value, and assign it back to the user object.
     user.id = result.lastID;
 

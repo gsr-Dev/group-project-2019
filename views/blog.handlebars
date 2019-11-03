@@ -2,7 +2,7 @@
 
     {{! Display a message if one was provided. }}
     {{#if message}}
-    <div class="alert alert-danger alert-dismissible fade show">
+    <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         {{message}}
     </div>
@@ -14,8 +14,8 @@
       <div class="col-md-10 mx-auto">
         {{#each predefinedArticles}}
         <h1>{{this.title}}</h1>
-        <h2>{{this.date}}</h2>
-        <p>{{this.content}}</p>
+        <h6>{{this.date}}</h6>
+        <div>{{{this.content}}}</div>
         {{/each}}
       </div>
     </div>

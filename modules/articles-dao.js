@@ -29,34 +29,27 @@ async function getPredefinedArticle() {
 
 }
 
-
-
-
-
-
-
-
  
-async function createArticle(content, user) {
+async function createArticle(user, title, content) {
    const db = await dbPromise;
  
    const result = await db.run(SQL`
-       insert into article (dtm, content, username) values(date('now'),${content},${user.usernmae})`
+       insert into articles (username, title, date, content) values(${user.username}, ${title},datetime('now'),${content})`
    );
  
-   console.log();
    // Get the auto-generated ID value, and assign it back to the user object.
-   article.id = result.lastID;
+   user.id = result.lastID;
  
    // return result for testing
    return result;
 };
-async function retrieveArticle (){
+
+async function getUserArticles(user){
    const db = await dbPromise;
  
-   const result = await db.run(SQL`
-       select * from article
-       where id = ${id}`);
+   const result = await db.all(SQL`
+       select title, date, content from articles
+       where username = ${user.username}`);
  
    return result;
 };
@@ -71,6 +64,8 @@ async function deleteArticle (){
    return result;
 };
  
-module.exports = { createArticle, retrieveArticle, deleteArticle,
+module.exports = { createArticle, 
+    getUserArticles, 
+    deleteArticle,
     addPredefinedArticle,
     getPredefinedArticle }

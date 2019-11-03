@@ -6,6 +6,8 @@ const articlesDao = require("../modules/articles-dao.js");
 
 router.get("/blog", async function (req, res) {
 
+    res.locals.message = req.query.message;
+
     // console.log(`user session on blog page ${req.session.user}`);
     // console.log(req.session.user);
     if (req.session.user == undefined) {
