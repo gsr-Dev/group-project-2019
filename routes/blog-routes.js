@@ -6,21 +6,21 @@ const articlesDao = require("../modules/articles-dao.js");
 
 router.get("/blog", async function (req, res) {
 
-    // const article = req.body.editordata;
-    // const user = req.session.unser;
-    // console.log(article);
-  
-    // const file = await blogDao.createArticle(article,user);
-    // const createArticle = await blogDao.retrieveArticle(file.lastID);
-    
-    const getPredefinedArticles = await articlesDao.getPredefinedArticle();
+    // console.log(`user session on blog page ${req.session.user}`);
+    // console.log(req.session.user);
+    if (req.session.user == undefined) {
+        res.redirect("./?message=You have signed out, please sign in again!");
+    } else {
+        
+        const getPredefinedArticles = await articlesDao.getPredefinedArticle();
 
-    const context = {
-        predefinedArticles : getPredefinedArticles,
-        layout: "blogLayout"
+        const context = {
+            predefinedArticles: getPredefinedArticles,
+            layout: "blogLayout"
+        }
+
+        res.render("blog", context);
     }
-    
-    res.render("blog", context);
 })
 
 module.exports = router;

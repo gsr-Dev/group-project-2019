@@ -6,6 +6,10 @@ const router = express.Router();
 
 router.get("/myArticles", async function (req, res) {
 
+    if (req.session.user == undefined) {
+        res.redirect("./?message=You have signed out, please sign in again!");
+    } else {
+
     // const article = req.body.editordata;
     // const user = req.session.unser;
     // console.log(article);
@@ -21,6 +25,7 @@ router.get("/myArticles", async function (req, res) {
     }
     
     res.render("myarticles", context);
+}
 })
 
 module.exports = router;
