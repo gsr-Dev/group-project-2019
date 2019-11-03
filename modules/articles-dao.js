@@ -48,7 +48,7 @@ async function getUserArticles(user){
    const db = await dbPromise;
  
    const result = await db.all(SQL`
-       select title, date, content from articles
+       select id, title, date, content from articles
        where username = ${user.username}`);
  
    return result;
@@ -63,9 +63,22 @@ async function deleteArticle (){
  
    return result;
 };
+
+async function getArticleById(id){
+    const db = await dbPromise;
+  
+    const result = await db.get(SQL`
+        select title, date, content from articles
+        where id = ${id}`);
+  
+    return result;
+ };
  
-module.exports = { createArticle, 
+module.exports = { 
+    createArticle, 
     getUserArticles, 
     deleteArticle,
     addPredefinedArticle,
-    getPredefinedArticle }
+    getPredefinedArticle,
+    getArticleById
+ }

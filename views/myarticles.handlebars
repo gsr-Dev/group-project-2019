@@ -1,12 +1,18 @@
-<script src="/js/summernote.js"></script>
-
 <div class="container">
+
+    <div class="container">
+        <div class="col-md-10 mx-auto">
+        <a href="./addArticles" role="button" class="btn btn-primary">Add Articles</a>
+        </div>
+    </div>
 
     <div class="container">
         <div class="row">
             <div class="col-md-10 mx-auto">
+
                 {{#each userArticle}}
-                <h1>{{this.title}}</h1>
+                {{!-- <h1>{{this.title}}</h1> --}}
+                <a href="./individualArticle?message={{this.id}}"><h1>{{this.title}}</h1></a>
                 <h6>{{this.date}}</h6>
                 <p>{{{this.content}}}</p>
                 {{/each}}
@@ -15,20 +21,8 @@
     </div>
 
 
-    <div class="header" class="text-center border border-light p-5">
-        <h1>Post your Article </h1>
-    </div>
 
-    <div id="articles" class="panel">
-        <h2 id="articleTitle">Articles</h2>
-        <div id="articles-inner"></div>
 
-        <div id="article-load-button" class="article-load button">Edit articles</div>
-        <form action="/myArticles" method="POST">
-            <label for="txtPassword">Please give your article a title:</label>
-            <input class="form-control mb-4" type="text" name="title" id="title" required>
-            <textarea id="summernote" name="editordata"></textarea>
-            <button id="save" class="btn btn-primary upload" type="submit">Save</button>
-        </form>
-    </div>
+
+    
 </div>
