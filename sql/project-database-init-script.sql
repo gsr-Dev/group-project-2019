@@ -30,4 +30,15 @@ create table articles (
     date datetime,
     content text,
     foreign key (username) references users(username)
+);
+
+drop table if exists comments;
+
+create table comments (
+    id integer not null primary key, 
+    username varchar(64) not null,
+    date datetime,
+    content text,
+    foreign key (username) references users(username),
+
 )
