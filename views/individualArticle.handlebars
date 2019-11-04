@@ -5,6 +5,11 @@
             <h1>{{article.title}}</h1>
             <h6>{{article.date}}</h6>
             <p>{{{article.content}}}</p>
+            <form action="./individualArticle" method="POST" >
+                
+                <div class="form-group"><textarea name="comment" id="comment" placeholder="Post your comment"></textarea></div> 
+                <div> <button type="submit" class="btn btn-info">Commnet</button></div> 
+            </form>
         </div>
     </div>
 
