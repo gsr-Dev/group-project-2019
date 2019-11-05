@@ -70,6 +70,15 @@ app.use(addArticlesRouter);
 const individualArticleRouter = require("./routes/individualarticle-routes.js");
 app.use(individualArticleRouter);
 
+// Setup setting routes
+const accountRouter = require("./routes/account-routes.js");
+app.use(accountRouter); 
+
+// Setup reset routes 
+const resetRouter = require("./routes/reset-routes.js");  
+app.use(resetRouter); 
+
+
 // Start the server running.
 app.listen(port, function () {
     console.log(`App listening on port ${port}!`);
