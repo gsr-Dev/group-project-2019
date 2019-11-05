@@ -10,7 +10,6 @@ async function addComments() {
     for (let i = 0; i < comments.length; i++) {
 
         const com = comments[i];
-        console.log("in addPredefinedArticle");
 
         await db.run(SQL`
             insert into articles (username, title, date, content)

@@ -8,23 +8,24 @@ const passwordHash = require("password-hash");
  * to the user.
  * 
  * @param user the user to insert
+ * @param password 
  */
-async function createUser(user) {
+async function createUser(user, password) {
     const db = await dbPromise;
-    console.log("in createUser");
 
     // The users password is turned into a hashed password and sent to the project database  
-    let hashedPassword = passwordHash.generate(`${user.password}`)
+    let hashedPassword = passwordHash.generate(`${password}`)
 
     const result = await db.run(SQL`
-        insert into users (username, password, salthashpassword, email, dob, realName, description) values(${user.username}, ${user.password}, ${hashedPassword}, ${user.email}, ${user.dob}, ${user.realName}, ${user.description})`
+    insert into users (username, password, salthashpassword, email, dob, realName, description) values(${user.username}, ${user.password}, ${hashedPassword}, ${user.email}, ${user.dob}, ${user.realName}, ${user.description})`
     );
 
+    return result.lastID;
     // Get the auto-generated ID value, and assign it back to the user object.
-    user.id = result.lastID;
+    //user.id = result.lastID;
 
     // return result for testing
-    return result;
+    //return result;
 }
 
 /**
@@ -58,6 +59,26 @@ async function retrieveUserByUserName(username) {
 
     return user;
 }
+
+
+/**
+ * Gets the users email from the database
+
+ * @param {string} email  
+ */
+
+async function retrieverUserEmail(email) {
+    const db = await dbPromise;
+
+    const userEmail = await db.get(SQL`
+    select email, username from users 
+    where email = ${email}`);
+
+    return userEmail;
+}
+
+
+
 /**
  * 
  * Gets the user with the given username and password from the database.
@@ -67,31 +88,26 @@ async function retrieveUserByUserName(username) {
  * @param {string} password the user's password
  */
 
- // seperate out passwordHash from retrieveUserCredentials. password currently = boolean value
+// seperate out passwordHash from retrieveUserCredentials. password currently = boolean value
 async function verifyCredentials(username, password) {
     const db = await dbPromise;
 
     try {
         const user = await retrieveUserByUserName(username);
-
         const hashedPassword = await db.get(SQL`
         select salthashpassword from users 
         where username = ${username}`);
-
-        //Object.values returns an array
+        //Object.values returns the hash string as an array
         const hashOnly = Object.values(hashedPassword);
-        console.log(hashOnly);
 
         const hashArray = hashOnly[0];
 
         const stringifiedHashedPassword = JSON.stringify(hashArray);
-        console.log(stringifiedHashedPassword);
 
-        //get rid of quotation marks
-        str = stringifiedHashedPassword.slice(1, -1);
-        console.log(str);
-
-        if (passwordHash.verify(password, str)) {
+        //This removes the quotations from the hash string in order for verify() to compare it to the password input by the user 
+        string = stringifiedHashedPassword.slice(1, -1);
+        //Verifies that the password the user input matches the hashed password in the database
+        if (passwordHash.verify(password, string)) {
             return user;
         } else {
             return null;
@@ -100,6 +116,28 @@ async function verifyCredentials(username, password) {
         return null;
     }
 }
+
+
+/**
+     * 
+     * @param newPassword  
+     * @param sessionData
+     *  
+     */
+
+async function updatePassword(newPassword, sessionData) {
+    const db = await dbPromise;
+    let hashedPassword = passwordHash.generate(newPassword);
+    await db.run(SQL` 
+        update users 
+        set salthashpassword = ${hashedPassword}
+        where email = ${sessionData} `
+    );
+
+    return hashedPassword;
+};
+
+
 
 /**
  * Gets an array of all users from the database.
@@ -164,10 +202,14 @@ module.exports = {
     createUser,
     retrieveUserById,
     retrieveUserByUserName,
+    retrieveLastUser,
     retrieveAllUsers,
+    retrieverUserEmail,
+    updatePassword,
     updateUser,
     deleteUser,
-    retrieveLastUser,
     saveAvatar,
     verifyCredentials
+
+
 };
