@@ -1,4 +1,4 @@
-<script src="/js/client-side.js"></script>
+<script src="/js/signup-client.js"></script>
 
 <div class="container">
 
@@ -16,7 +16,6 @@
         <div class="flex-col mb">
             <label for="txtUsername">Username:</label>
             <input class="form-control mb-4" type="text" name="username" id="txtUsername" required>
-            {{!-- {{#if userexist}}{{/if}} --}}
             <p id="user-exist"></p>
             
         </div>
@@ -29,6 +28,7 @@
         <div class="flex-col mb">
             <label for="txtName">Re-enter Password:</label>
             <input class="form-control mb-4" type="password" name="rePassword" id="txtRePassword" required>
+            <p id="password-not-matching"></p>
         </div>
 
         <div class="flex-col mb">
