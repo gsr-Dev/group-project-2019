@@ -16,28 +16,41 @@
 
     <!-- Added Summernote (WYSIWYG Editor on Bootstrap)-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script> 
+
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Sofia'>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
-        <a class="navbar-brand" href="/blog">HOME</a>
+{{!--Navigation --}}
 
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb"
-            aria-expanded="true">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-
-        <div id="navbar" class="navbar-collapse collapse hide justify-content-end">
-            <ul class="nav nav-pills">
-                    <a class="nav-item nav-link" href="./myArticles">My Articles</a>
-                    <a class="nav-item nav-link" href="./account">Account</a>
-                    <a class="nav-item nav-link active" href="./signout">Sign out</a>
-            </ul>
+<nav class="navbar navbar-expand-sm sticky-top" style="background-color: white">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb"aria-expanded="true">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container-fluid text-center">
+        <div class="navbar-header">
+            <a id="logoHover" class="navbar-brand" href="/blog">
+                <img id="logo" src="/images/site/logo.png" alt="Logo">
+            </a>
         </div>
-    </nav>
+        <h1 class="navbar-text">Welcome to your new blog.</h1> 
+        <ul class="nav justify-content-end p-3">
+            <li class="nav-item">
+                <a id="signinButton" class="btn btn-outline-dark" href="./myArticles">My Articles</a>
+            </li>
+            <li class="nav-item">
+                <a id="accountButton" class="btn btn-outline-dark" href="./account">Account</a>
+            </li> 
+            <li class="nav-item">
+                <a class="btn btn-outline-dark" href="./signout">Sign out</a>
+            </li> 
+        </ul>
+    </div>
+</nav> 
 
+
+
+<body>
     {{{body}}}
 </body>
 

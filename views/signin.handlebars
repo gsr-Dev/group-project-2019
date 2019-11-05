@@ -8,7 +8,7 @@
     </div>
     {{/if}}
 
-    <form action="./signin" method="POST" class="text-center border border-light p-5">
+    <form action="./signin" method="POST" class="text-center border border-dark p-5">
 
         <p class="h4 mb-4">Sign in</p>
         <div class="flex-col mb">
@@ -22,11 +22,11 @@
         </div>
 
         <div class="flex-row justify-sb align-center">
-            <button type="submit" class="btn btn-info btn-block my-4">Sign in</button>
+            <button id="signinButton" type="submit" class="btn btn-outline-dark">Sign in</button>
         </div>
 
         <div class="flex-col mb">
-            <a href="./forgotpsw">Forgot Password?</a>
+            <a id="forgotPassword" href="./forgotpsw">Forgot Password?</a>
         </div>
 
     </form>

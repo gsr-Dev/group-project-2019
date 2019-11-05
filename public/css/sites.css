@@ -38,16 +38,6 @@
     border-radius: 5px;
 }
 
-.button {
-    width: 100%;
-    text-align: center;
-    color: white;
-    background-color: teal;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
-}
 
 .article-load {
     margin-top: 2em;
@@ -69,11 +59,13 @@
 /*****************************************************************/
 body {
     margin: 0;
-    padding: 0;
+    padding: 0; 
+    
 }
 
 .container {
-    margin: 20px 20px;
+    margin: 20px 20px; 
+ 
 }
 /*****************************************************************/
 
@@ -114,23 +106,52 @@ div.card > .card-body {
 
 /* Nav */
 /*****************************************************************/
+.navbar {
+    
+    border: 0.5px solid black;
+    padding: 1px;
+    
+} 
+
 .nav {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
+    align-items: center; 
+     
+    
 }
 
 .navbar-brand {
-    padding: 0px 10px;
-    margin: 2px;
+
+    color: black
 }
 
 .nav .nav-link {
     padding: 4px 12px;
     font-size: 18px;
-    color: white;
+    color: black; 
 }
+
+#logo {
+    width: 120px; 
+    padding: 0px; 
+} 
+
+#logoHover { 
+    transition-duration: 0.3s; 
+}
+
+
+
+#logo:hover {
+    border: 2px solid black;
+} 
+
+#accountButton {
+    margin-right: 5px 
+}
+
 /*****************************************************************/
 
 /* Grid */
@@ -161,5 +182,16 @@ div.card > .card-body {
   /* CHECKED STYLES */
   div.card [type=radio]:checked + img {
     outline: 3px solid rgb(45, 173, 216);
-  }
+  } 
+
+/* Forgot password link */
+  #forgotPassword { 
+    color: black; 
+}  
+
+#signinButton { 
+    margin-right: 5px
+}
+
+
   /*****************************************************************/

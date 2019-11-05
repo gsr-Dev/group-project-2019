@@ -8,13 +8,13 @@ const passwordHash = require("password-hash");
  * to the user.
  * 
  * @param user the user to insert
- * @param password 
+ * 
  */
-async function createUser(user, password) {
+async function createUser(user) {
     const db = await dbPromise;
 
     // The users password is turned into a hashed password and sent to the project database  
-    let hashedPassword = passwordHash.generate(`${password}`)
+    let hashedPassword = passwordHash.generate(`${user.password}`)
 
     const result = await db.run(SQL`
     insert into users (username, password, salthashpassword, email, dob, realName, description) values(${user.username}, ${user.password}, ${hashedPassword}, ${user.email}, ${user.dob}, ${user.realName}, ${user.description})`
