@@ -19,11 +19,12 @@ async function addPredefinedArticle() {
 
 }
 
-async function getPredefinedArticle() {
+async function getAllArticles() {
     const db = await dbPromise;
 
     const articles = await db.all(SQL`
-        select * from articles`);
+        select * from articles
+        order by date desc`);
 
     return articles;
 
@@ -49,16 +50,17 @@ async function getUserArticles(user){
  
    const result = await db.all(SQL`
        select id, title, date, content from articles
-       where username = ${user.username}`);
+       where username = ${user.username}
+       order by date desc`);
  
    return result;
 };
  
-async function deleteArticle (){
+async function deleteArticle(id){
    const db = await dbPromise;
  
-   const result= await db.get(SQL`
-       delete from article
+   const result= await db.run(SQL`
+       delete from articles
        where id = ${id}`);
  
    return result;
@@ -68,17 +70,28 @@ async function getArticleById(id){
     const db = await dbPromise;
   
     const result = await db.get(SQL`
-        select title, date, content from articles
+        select id, title, date, content from articles
         where id = ${id}`);
   
     return result;
  };
+
+ async function editArticle(articleID,title,content) {
+    const db = await dbPromise;
+ 
+    await db.run(SQL`
+        update articles
+        set title = ${title}, content = ${content}
+        where id = ${articleID}`
+    );
+ }
  
 module.exports = { 
     createArticle, 
     getUserArticles, 
     deleteArticle,
     addPredefinedArticle,
-    getPredefinedArticle,
-    getArticleById
+    getAllArticles,
+    getArticleById,
+    editArticle
  }

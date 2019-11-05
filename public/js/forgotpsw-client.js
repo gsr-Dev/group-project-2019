@@ -14,7 +14,7 @@ window.addEventListener('load', function () {
         for (let element of fetchJson) {
             console.log(emailInput);
             console.log(element.email);
-            if (emailInput != element.email) {
+            if (emailInput != element.email && emailInput) {
                 document.querySelector("#email-exist").innerHTML = 'This email does not exist';
                 document.querySelector("#email-exist").style.color = 'red';
             } else{
@@ -23,22 +23,5 @@ window.addEventListener('load', function () {
             }
         }
 
-
-        // for(let element of fetchJson) { 
-        //     if (!emailInput) { 
-        //         let changeMessage = document.querySelector('#message_paragraph'); 
-        //         changeMessage.innerHTML = '<p>Please enter your Email Address below</p>';
-        //         break;
-        //     } else if (emailInput == element.email) { 
-        //         document.querySelector('#message_paragraph').innerHTML = 'Please enter your Email Address below'; 
-        //         break;
-
-        //     } else if (emailInput != element.email) { 
-        //         document.querySelector('#message_paragraph').innerHTML = 'This email does not exist'; 
-        //         document.querySelector("#message_paragraph").style.color = 'red';
-        //         break;
-
-        //     } 
-        // } 
     });
 }); 

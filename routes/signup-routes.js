@@ -18,6 +18,8 @@ router.get("/signup.json", async function (req, res) {
 router.post("/signup", async function (req, res) {
     const password = req.body.password;
     const rePassword = req.body.rePassword;
+    console.log(`password is ${password}`);
+    console.log(`rePassword is ${rePassword}`);
 
 
     if (password !=  rePassword.toString()) {
@@ -26,8 +28,8 @@ router.post("/signup", async function (req, res) {
     } else {
 
         try {
-            //const sqlInfo = await userDao.createUser(req.body);
-            //const createUser = await userDao.retrieveUserById(sqlInfo.lastID);
+            // const sqlInfo = await userDao.createUser(req.body);
+            // const createUser = await userDao.retrieveUserById(sqlInfo.lastID);
             const userID = await userDao.createUser(req.body);
             const createdUser = await userDao.retrieveUserById(userID);
             req.session.user = createdUser;

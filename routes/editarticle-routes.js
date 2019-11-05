@@ -5,7 +5,13 @@ const router = express.Router();
 const articlesDao = require("../modules/articles-dao.js");
 
 
-router.get("/addArticles", function (req, res) {
+router.get("/editArticle", async function (req, res) {
+    const articleID = req.query.message;
+    console.log(articleID);
+
+
+    const articleDetails = await articlesDao.getArticleById(articleID);
+
     const user = req.session.user;
 
     if (user == undefined) {
@@ -13,19 +19,20 @@ router.get("/addArticles", function (req, res) {
     } else {
 
         const context = {
+            article: articleDetails,
             layout: "blogLayout"
         }
-        res.render("addArticles", context);
+        res.render("editArticles", context);
     }
 })
 
-router.post("/addArticles", async function (req, res) {
+router.post("/editArticle", async function (req, res) {
 
-    const user = req.session.user;
+    const articleID = req.body.articleID;
     const title = req.body.title;
     const content = req.body.editordata;
     //console.log(`user ${user} and title ${title} and content ${content}`);
-    await articlesDao.createArticle(user, title, content);
+    await articlesDao.editArticle(articleID, title, content);
     //res.redirect("./myArticles");
 });
 

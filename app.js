@@ -70,6 +70,10 @@ app.use(addArticlesRouter);
 const individualArticleRouter = require("./routes/individualarticle-routes.js");
 app.use(individualArticleRouter);
 
+// Setup addarticles routes
+const editArticleRouter = require("./routes/editarticle-routes.js");
+app.use(editArticleRouter);
+
 // Setup setting routes
 const accountRouter = require("./routes/account-routes.js");
 app.use(accountRouter); 
