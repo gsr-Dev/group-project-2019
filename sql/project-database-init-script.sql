@@ -39,6 +39,7 @@ create table comments (
     username varchar(64) not null,
     date datetime,
     content text,
+    articleID integer not null,
     foreign key (username) references users(username),
-
+    foreign key (articleID) references articles(id)
 )
