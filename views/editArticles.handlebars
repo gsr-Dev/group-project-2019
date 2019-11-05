@@ -1,10 +1,10 @@
-<script src="/js/summernote-add.js"></script>
+<script src="/js/summernote-edit.js"></script>
 
 <div class="container">
 
 
     <div class="header" class="text-center border border-light p-5">
-        <h1>Post your Article </h1>
+        <h1>Edit your Article </h1>
     </div>
 
     <div id="articles" class="panel">
@@ -18,10 +18,11 @@
         </div>
 
 
-        <form action="/addArticles" method="POST">
-            <label for="txtPassword">Article Title:</label>
-            <input class="form-control mb-4" type="text" name="title" id="title" required>
-            <textarea class="form-control" id="summernote" name="editordata"></textarea>
+        <form action="/editArticle" method="POST">
+        <input class="form-control" name="articleID" value="{{article.id}}" type="hidden">
+            <label for="article-title">Article Title:</label>
+            <textarea class="form-control"  name="title" id="title">{{article.title}}</textarea>
+            <textarea class="form-control"  id="summernote" name="editordata">{{article.content}}</textarea>
             <button id="save" class="btn btn-primary upload" type="submit">Save</button>
         </form>
     </div>

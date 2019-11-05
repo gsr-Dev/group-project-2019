@@ -17,7 +17,7 @@ async function addComments() {
     }   
 
 }
-async function getCommentIamge(username) {
+async function getCommentImage(username) {
     const db = await dbPromise;
 
     const image = await db.get(SQL`
@@ -39,11 +39,11 @@ async function getComments() {
 }
 
  
-async function createComments(user, content) {
+async function createComments(user, content,articlesID) {
    const db = await dbPromise;
  
    const result = await db.run(SQL`
-       insert into articles (username, date, content) values(${user.username},datetime('now'),${content})`
+       insert into comments (username, date, content, articlesID) values(${user.username},datetime('now'),${content}, ${articlesID})`
    );
  
    // Get the auto-generated ID value, and assign it back to the user object.
@@ -90,5 +90,5 @@ module.exports = {
     getUserComments,
     deleteComments,
     getCommentById,
-    getCommentIamge
+    getCommentImage
  }

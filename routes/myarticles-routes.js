@@ -13,7 +13,6 @@ router.get("/myArticles", async function (req, res) {
     } else {
 
         const getUserArticle = await articlesDao.getUserArticles(user);
-        console.log(getUserArticle);
 
         const context = {
             userArticle : getUserArticle,

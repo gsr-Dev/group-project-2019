@@ -12,10 +12,10 @@ router.get("/", async function(req, res) {
 
     //Add dummy articles
     //await articlesDao.addPredefinedArticle();
-    const getPredefinedArticles = await articlesDao.getPredefinedArticle();
+    const getallArticles = await articlesDao.getAllArticles();
     
     const context = {
-        predefinedArticles : getPredefinedArticles,
+        allArticles : getallArticles,
         layout: "homeLayout"
     }
 

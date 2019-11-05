@@ -15,7 +15,6 @@ router.get("/individualArticle", async function(req, res) {
     } else {
 
         const getArticleByID = await articlesDao.getArticleById(articleID);
-        console.log(getArticleByID);
 
         const context = {
             article: getArticleByID,
@@ -26,8 +25,10 @@ router.get("/individualArticle", async function(req, res) {
     }
 });
 
-
-
-
+router.post("/individualArticle", async function(req, res) {
+    const articleID = req.body.articleID;
+    await articlesDao.deleteArticle(articleID);
+    res.redirect("./myArticles");
+});
 
 module.exports = router;

@@ -3,6 +3,7 @@ const dbPromise = require("./database.js");
 const passwordHash = require("password-hash");
 
 
+
 /**
  * Inserts the given user into the database. Then, reads the ID which the database auto-assigned, and adds it
  * to the user.
@@ -10,22 +11,23 @@ const passwordHash = require("password-hash");
  * @param user the user to insert
  * @param password 
  */
-async function createUser(user, password) {
+async function createUser(user) {
     const db = await dbPromise;
 
     // The users password is turned into a hashed password and sent to the project database  
-    let hashedPassword = passwordHash.generate(`${password}`)
+    let hashedPassword = passwordHash.generate(`${user.password}`)
+    console.log(`created hashedpassword ${hashedPassword} for ${user.password}`);
 
     const result = await db.run(SQL`
     insert into users (username, password, salthashpassword, email, dob, realName, description) values(${user.username}, ${user.password}, ${hashedPassword}, ${user.email}, ${user.dob}, ${user.realName}, ${user.description})`
     );
 
     return result.lastID;
-    // Get the auto-generated ID value, and assign it back to the user object.
+    //Get the auto-generated ID value, and assign it back to the user object.
     //user.id = result.lastID;
 
-    // return result for testing
-    //return result;
+    //return result for testing
+    // return result;
 }
 
 /**
@@ -106,6 +108,8 @@ async function verifyCredentials(username, password) {
 
         //This removes the quotations from the hash string in order for verify() to compare it to the password input by the user 
         string = stringifiedHashedPassword.slice(1, -1);
+        console.log(string);
+        console.log(password);
         //Verifies that the password the user input matches the hashed password in the database
         if (passwordHash.verify(password, string)) {
             return user;
@@ -128,10 +132,11 @@ async function verifyCredentials(username, password) {
 async function updatePassword(newPassword, sessionData) {
     const db = await dbPromise;
     let hashedPassword = passwordHash.generate(newPassword);
+    console.log(hashedPassword);
     await db.run(SQL` 
         update users 
         set salthashpassword = ${hashedPassword}
-        where email = ${sessionData} `
+        where username = ${sessionData} `
     );
 
     return hashedPassword;
