@@ -1,12 +1,14 @@
 <div class="container">
 
     {{! Display a message if one was provided. }}
+    <div class="container mx-8">
     {{#if message}}
     <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         {{message}}, you can click here to <a href="./signup" class="alert-link">Sign Up</a>
     </div>
     {{/if}}
+    </div>
 
     <form action="./signin" method="POST" class="text-center" id="formBox">
 
@@ -22,7 +24,7 @@
         </div>
 
         <div class="flex-row justify-sb align-center">
-            <button id="allButtons" type="submit" class="btn btn-outline-light">Sign in</button>
+            <button id="allButtons" type="submit" class="btn btn-outline-primary">Sign in</button>
         </div>
 
         <div class="flex-col mb">

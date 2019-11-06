@@ -1,8 +1,9 @@
 * {
     margin: 0; 
     padding: 0; 
-    box-sizing: border-box; 
-}
+    box-sizing: border-box;  
+    font-family: 'Oxygen', sans-serif;
+} 
 
 body {
     font-size: 1.3rem; 
@@ -24,7 +25,8 @@ body {
 }
 
 #articles {
-    grid-area: articles;
+    grid-area: articles; 
+    border-color: #00A6FB;  
 }
 
 #information {
@@ -50,10 +52,6 @@ body {
 }
 
 
-.article-load {
-    margin-top: 2em;
-    background-color: darkgreen;
-}
 
 .panel {
     padding: 1em;
@@ -76,21 +74,46 @@ body {
 
 .container {
     margin: auto;  
-    margin-top: 20px;
+    margin-top: 0px;
     max-width: 1100px; 
     overflow: auto;
-    padding: 0 2rem; 
+    /* padding: 0 2rem;  */
  
 } 
 
 .alert {
-    background-color: #f0dab1 ; 
+    background-color: #FFBA08; 
+} 
+
+.jumbotron {
+    background-color: white !important; 
+    margin-top: 0px; 
+    padding: 0%; 
+    height: 250px; 
+    justify-content: space-evenly;    
+
+}
+
+#jumboimg {
+    width: 200px; 
+    height: 200px; 
+    margin-top: 0px; 
+    padding: 0%;
+} 
+
+.navbar-text {
+    margin-top: 0px;
 }
 /*****************************************************************/
 
 
 /* Cards */
 /*****************************************************************/
+
+.card { 
+    margin-top: 20px;
+}
+
 div.card {
     background-color: white;
     box-shadow: 3px 3px 5px #706F6F;
@@ -119,7 +142,7 @@ div.card > .card-body {
 } 
 
 div.card-header {
-    background-color: #f6edcf;
+    background-color: #EAEBED;
 }
 
 /*****************************************************************/
@@ -127,8 +150,10 @@ div.card-header {
 /* Nav */
 /*****************************************************************/
 .navbar {
-    background-color: #A4D7E1; 
-    color: white;
+    background-color: #00A6FB; 
+    color: white; 
+    margin: 0%; 
+    height: 50px;
 } 
 
 .nav {
@@ -144,14 +169,6 @@ div.card-header {
     color: black; 
 }
 
-#logo {
-    width: 120px; 
-    padding: 0px; 
-} 
-
-#logo:hover {
-    cursor: pointer;
-} 
 
 /*****************************************************************/
 
@@ -160,10 +177,10 @@ div.card-header {
 
 #formBox { 
     border-style: solid;
-    border-color: #a4d7e1; 
+    border-color: #00A6FB; 
     padding: 5px; 
-    background-color: #a4d7e1; 
-    color: white; 
+    background-color: #EAEBED; 
+    color: black; 
 
 }
 
@@ -202,25 +219,25 @@ div.card-header {
 
 /* Forgot password link */
   #forgotPassword { 
-    color: black; 
+    color:  black; 
+    margin: auto; 
+    margin-top: 20px;   
 }  
 
 #allButtons { 
     margin-right: 2px; 
     margin-left: 2px;
-    border-color: #f6edcf; 
+    
 
 }  
 
-#darkButtons {
-    border-color: #a4d7e1;
+#home { 
+    color: white; 
+} 
+
+#save { 
+    margin-top: 20px; 
 }
-
-
-#darkButtons:hover {
-    background-color: #a4d7e1; 
-}
-
   /*****************************************************************/ 
   /****Media****/ 
 

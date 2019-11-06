@@ -11,13 +11,14 @@ window.addEventListener("load", function () {
             if (JSON.stringify(json[counter].username).slice(1, -1) == usernameInput) {
                 document.querySelector("#user-exist").innerHTML = "Username already exists";
                 document.querySelector("#user-exist").style.color = 'red'; 
-                counter = json.length;
+                counter = json.length; 
+               
             } else {
                 document.querySelector("#user-exist").innerHTML = "Username is available";
-                document.querySelector("#user-exist").style.color = 'white';
+                document.querySelector("#user-exist").style.color = 'green';
             }
         }
-    })
+    });
 
 
     document.getElementById("txtRePassword").addEventListener("input", async function () {
@@ -32,6 +33,6 @@ window.addEventListener("load", function () {
             } else {
                 document.querySelector("#password-not-matching").innerHTML = "";
             }
-    })
+    });
 
-})
+});

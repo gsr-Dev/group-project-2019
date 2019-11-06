@@ -28,20 +28,25 @@
 
 
 
-<body>
+<body style="background-color: #f9f9f9"> 
+    <!--Jumbotron -->
+    <div class="jumbotron mb-0">
+        <div class="container">
+            <img src="/images/site/jumbotron-img.png" id="jumboimg">
+            <h1 style="color: #FFBA08" class="navbar-text">Welcome to your new blog.</h1> 
+        </div>
+    </div>
+
+
+
     {{!--Navigation --}} 
     <nav class="navbar navbar-expand-sm sticky-top">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-expanded="true">
-          <span class="navbar-toggler-icon"></span>
-      </button> 
-      <div class="container-fluid text-center">
+      
+      <div class="container-fluid">
           <div class="navbar-header">
-              <a class="navbar-brand">
-                  <img id="logo" src="/images/site/logo.png" alt="Logo">
-              </a>
+              <a id="home" class="navbar-brand">Home</a>
           </div> 
-
-          <h1 class="navbar-text">Welcome to your new blog.</h1> 
+         
           <ul class="nav justify-content-end p-3">
               <li class="nav-item">
                   <a id="allButtons" class="btn btn-outline-light" href="./signin">Sign in</a>
@@ -57,8 +62,8 @@
    <script>
       AOS.init({
           offset: 400, 
-          duration: 1000
-      });
+          duration: 1000,
+          });
    </script>
 
 </body>

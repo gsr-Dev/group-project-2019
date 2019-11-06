@@ -25,7 +25,15 @@
     
 </head>
 
-<body>
+<bodystyle="background-color: #f9f9f9">
+ <!--Jumbotron -->
+    <div class="jumbotron mb-0">
+        <div class="container"> 
+            <img src="/images/site/jumbotron-img.png" id="jumboimg">
+            <h1 style="color: #FFBA08" class="navbar-text">Welcome to your new blog.</h1> 
+        </div>
+    </div>
+
         {{!--Navigation --}} 
     <nav class="navbar navbar-expand-sm sticky-top">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-expanded="true">
@@ -33,23 +41,23 @@
       </button> 
       <div class="container-fluid">
           <div class="navbar-header">
-              <a class="navbar-brand" href="/blog">
-                  <img id="logo" src="/images/site/logo.png" alt="Logo">
-              </a>
+              <a id="home" class="navbar-brand" href="/">Home</a>
           </div> 
 
-          <h1 class="navbar-text">Welcome to your new blog.</h1> 
-          <ul class="nav justify-content-end">
-              <li class="nav-item">
-                  <a id="allButtons" class="btn btn-outline-light" href="./myArticles">My articles</a>
-              </li>
-              <li class="nav-item">
-                  <a id="allButtons" class="btn btn-outline-light" href="./account">Account</a>
-              </li>
-              <li class="nav-item">
-                  <a id="allButtons" class="btn btn-outline-light" href="./signout">Sign out</a>
-              </li>  
-          </ul> 
+        <div class="dropdown"> 
+        <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 20px;">Menu</button>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+              
+                  <a id="allButtons" class="dropdown-item" href="./myArticles">My articles</a>
+             
+              
+                  <a id="allButtons" class="dropdown-item" href="./account">Account</a>
+             
+             
+                  <a id="allButtons" class="dropdown-item" href="./signout">Sign out</a>
+              
+          
+        </div> 
       </div>
   </nav> 
     {{{body}}}

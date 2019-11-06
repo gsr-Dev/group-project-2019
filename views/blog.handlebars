@@ -14,14 +14,16 @@
       
      <main class="container"> 
        {{#each predefinedArticles}}
-       <div class="container"> 
-       <section class="card" data-aos="fade-down"> 
+       <div class="container">  
+       <section class="card shadow-sm p-3 mb-5 bg-white rounded" data-aos="fade-down"> 
+            
          <div class="card-header">
            <h1 style="margin: auto;">{{this.title}}</h1>
            <h6>{{this.date}}</h6> 
           </div>  
           <div class="card-body" style="margin: auto;">{{{this.content}}}</div>
-          <button type="button" id="darkButtons" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">Comment</button>
+          <button type="button" id="darkButtons" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">Comment</button> 
+          
         </section>  
          </div>
         {{/each}}

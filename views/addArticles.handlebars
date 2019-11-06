@@ -4,19 +4,19 @@
 
 
     <div class="header" class="text-center border border-light p-5">
-        <h1>Post your Article </h1>
+        <h1 style="margin-top: 20px;">Post your Article </h1>
     </div>
 
     <div id="articles" class="panel">
-        <h2 id="articleTitle">Articles</h2>
+     
         <div id="articles-inner"></div>
 
         <div id="article-load-button" class="article-load button">Edit articles</div>
         <form action="/myArticles" method="POST">
-            <label for="txtPassword">Please give your article a title:</label>
+            <h3>Please give your article a title:</h3>
             <input class="form-control mb-4" type="text" name="title" id="title" required>
             <textarea id="summernote" name="editordata"></textarea>
-            <button id="save" class="btn btn-primary upload" type="submit">Save</button>
+            <button id="save" class="btn btn-outline-primary" type="submit">Save</button>
         </form>
     </div>
 </div>
