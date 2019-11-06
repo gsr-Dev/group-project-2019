@@ -11,8 +11,9 @@ router.get("/account", async function (req, res) {
     
     console.log(retrievedAvatar.image);
     
-    context = {
-        avatar: retrievedAvatar.image
+    const context = {
+        avatar: retrievedAvatar.image,
+        layout: "blogLayout"
     }
     res.render("account", context);
 })
@@ -49,7 +50,7 @@ router.post("/account", async function (req, res) {
             
         } catch (err) {
             console.log(err);
-            res.redirect("./signup?message=cannot update the user information!");
+            res.redirect("./account?message=cannot update the user information!");
         }
 });
 

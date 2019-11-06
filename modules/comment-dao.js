@@ -82,6 +82,19 @@ async function getCommentById(id){
   
     return result;
  };
+
+ /**
+ * Deletes all comments by username from the database.
+ * 
+ * @param {number} username the user's username
+ */
+async function deleteCommentsByUsername(username) {
+    const db = await dbPromise;
+
+    await db.run(SQL`
+        delete from comments
+        where username = ${username}`);
+}
  
 module.exports = { 
     addComments,
@@ -90,5 +103,6 @@ module.exports = {
     getUserComments,
     deleteComments,
     getCommentById,
-    getCommentImage
+    getCommentImage,
+    deleteCommentsByUsername
  }

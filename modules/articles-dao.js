@@ -56,6 +56,7 @@ async function getUserArticles(user){
    return result;
 };
  
+//Delete individual article
 async function deleteArticle(id){
    const db = await dbPromise;
  
@@ -65,6 +66,19 @@ async function deleteArticle(id){
  
    return result;
 };
+
+/**
+ * Deletes all articles by username from the database.
+ * 
+ * @param {number} username the user's username
+ */
+async function deleteArticlesByUsername(username) {
+    const db = await dbPromise;
+
+    await db.run(SQL`
+        delete from articles
+        where username = ${username}`);
+}
 
 async function getArticleById(id){
     const db = await dbPromise;
@@ -89,7 +103,8 @@ async function getArticleById(id){
 module.exports = { 
     createArticle, 
     getUserArticles, 
-    deleteArticle,
+    deleteArticle,//need to change the name
+    deleteArticlesByUsername,
     addPredefinedArticle,
     getAllArticles,
     getArticleById,

@@ -91,7 +91,6 @@ async function retrieverUserEmail(email) {
 
 // seperate out passwordHash from retrieveUserCredentials. password currently = boolean value
 async function verifyCredentials(username, password) {
-    const db = await dbPromise;
 
     try {
         const user = await retrieveUserByUserName(username);
@@ -126,7 +125,7 @@ async function updatePassword(newPassword, sessionData) {
     console.log(hashedPassword);
     await db.run(SQL` 
         update users 
-        set salthashpassword = ${hashedPassword}
+        set password = ${newPassword},salthashpassword = ${hashedPassword}
         where username = ${sessionData} `
     );
 
@@ -196,26 +195,6 @@ async function retrieveLastUser() {
 }
 
 
-/**
- * Retrieve users who are indicated as 'Y' for signedIn status from the database.
- * 
- */
-// async function retrieveSignedInUsers() {
-//     const db = await dbPromise;
-
-//     const user = await db.all(SQL`
-//         select * from users
-//         where is_signedIn = 1`);
-
-//     return users;
-// }
-
-// async function signInBoolean(username) {
-//     const db = await dbPromise;
-
-//     await db.run(SQL`
-//     alter users (is_signedIn) values(1)`);
-// }
 
 async function saveAvatar(username, imgName) {
     const db = await dbPromise;
@@ -243,6 +222,18 @@ async function retrieveAvatar(username) {
     return user;
 }
 
+/**
+ * Deletes the profile with the given username from the database.
+ * 
+ * @param {number} username the user's username
+ */
+async function deleteProfile(username) {
+    const db = await dbPromise;
+
+    await db.run(SQL`
+        delete from profile
+        where username = ${username}`);
+}
 
 // Export functions.
 module.exports = {
@@ -258,7 +249,8 @@ module.exports = {
     deleteUser,
     saveAvatar,
     verifyCredentials,
-    updateAvatar
+    updateAvatar,
+    deleteProfile
 
 
 };
