@@ -19,13 +19,13 @@ const upload = multer({
 
 router.get("/avatar", function (req, res) {
 
-    let fileNames = fs.readdirSync( "public/images"); 
+    let fileNames = fs.readdirSync("public/images");
     const allowedFileTypes = [".bmp", ".jpg", ".jpeg", ".png", ".gif"];
-    fileNames = fileNames.filter(function(fileName) {
+    fileNames = fileNames.filter(function (fileName) {
         const extension = fileName.toLowerCase().substring(fileName.lastIndexOf("."));
         return allowedFileTypes.includes(extension);
     });
-    
+
     const context = {
         images: fileNames,
         action: req.query.action
@@ -35,26 +35,25 @@ router.get("/avatar", function (req, res) {
 });
 
 router.post("/avatar", upload.single("imageFile"), async function (req, res) {
-    
+
     let selectedProfile;
 
     //Check if user has uploaded a photo, if so save and resize the file to the image folder
     const fileInfo = req.file;
     console.log(fileInfo);
-    if(req.file != undefined) {
-    // Move the image into the images folder
+    if (req.file != undefined) {
+        // Move the image into the images folder
         const oldFileName = fileInfo.path;
         const newFileName = `./public/images/${fileInfo.originalname}`;
         fs.renameSync(oldFileName, newFileName);
-    
-        // Create and save thumbnail
-        const image = await jimp.read(newFileName);
-        image.resize(320,jimp.AUTO);
-        await image.write(`./public/images/${fileInfo.originalname}`);
+
+
         selectedProfile = fileInfo.originalname;
     } else {
         selectedProfile = req.body.radioImage;
     }
+
+
 
 
     console.log(`this is selected profile: ${selectedProfile}`);
@@ -62,6 +61,11 @@ router.post("/avatar", upload.single("imageFile"), async function (req, res) {
     if (selectedProfile == null) {
         res.redirect("/avatar?message=You must have a profile!");
     } else {
+        // Create and save thumbnail
+        const image = await jimp.read(`./public/images/${selectedProfile}`);
+        image.resize(320, jimp.AUTO);
+        await image.write(`./public/images/thumbnails/${selectedProfile}`);
+
         const user = await userDao.retrieveLastUser();
         console.log(user);
         console.log(selectedProfile);
@@ -71,22 +75,22 @@ router.post("/avatar", upload.single("imageFile"), async function (req, res) {
 });
 
 
-router.post("/updateAvatar", upload.single("imageFile"), async function(req, res) {
+router.post("/updateAvatar", upload.single("imageFile"), async function (req, res) {
 
     let selectedProfile;
 
     //Check if user has uploaded a photo, if so save and resize the file to the image folder
     const fileInfo = req.file;
     console.log(fileInfo);
-    if(req.file != undefined) {
-    // Move the image into the images folder
+    if (req.file != undefined) {
+        // Move the image into the images folder
         const oldFileName = fileInfo.path;
         const newFileName = `./public/images/${fileInfo.originalname}`;
         fs.renameSync(oldFileName, newFileName);
-    
+
         // Create and save thumbnail
         const image = await jimp.read(newFileName);
-        image.resize(320,jimp.AUTO);
+        image.resize(320, jimp.AUTO);
         await image.write(`./public/images/${fileInfo.originalname}`);
         selectedProfile = fileInfo.originalname;
     } else {
