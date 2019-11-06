@@ -28,12 +28,12 @@
 <body>
 
     <!--Jumbotron --> 
-<div class="container fluid h-100" style="background-color: white;">
-    <div class="row align-items-center h-100">
+<div class="container fluid" style="background-color: white;">
+    <div class="row align-items-center h-100" style="background-color: white;">
         <div class="col-6 mx-auto">
             <div class="jumbotron jumbotron-fluid py-0 mb-0 mt-4">
-                <div class="container fluid">
-                    <img src="/images/site/jumbotron-img.png" id="jumboimg">
+                <div class="container fluid" style="background-color: white;">
+                    <img src="/images/site/jumbotron-img.png" id="jumboimg" style="opacity: 1;">
                     <h1 style="color: #FFBA08">Welcome to your new blog.</h1>
                 </div>
             </div>
@@ -43,14 +43,15 @@
 
     {{!--Navigation --}}
     <nav class="navbar navbar-expand-sm bg-warning justify-content-end">
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="d-flex bd-highlight mb-3"></div>
-            <ul class="navbar-nav text-left">
+        <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
+            
+            <ul class="navbar-nav text-right">
                 <li class="nav-item">
                     <a class="nav-link bg-light" href="./signin">Sign in</a>
                 </li>
@@ -59,7 +60,7 @@
                 </li>
             </ul>
         </div>
-        </div>
+        
     </nav>
     {{{body}}}
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
