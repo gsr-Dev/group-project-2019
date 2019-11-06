@@ -1,23 +1,25 @@
-<div class="container">
-
-  {{! Display a message if one was provided. }}
-  {{#if message}}
-  <div class="alert alert-success alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    {{message}}</a>
-  </div>
-  {{/if}}
-
+{{! Display a message if one was provided. }}
+{{#if message}}
+<div class="alert alert-success alert-dismissible fade show">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{message}}</a>
 </div>
+{{/if}}
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 mx-auto">
-        {{#each predefinedArticles}}
-        <h1>{{this.title}}</h1>
+
+
+{{#each predefinedArticles}} 
+<main class="container">
+    <section class="card" data-aos="fade-down"> 
+      <div class="card-header">
+        <h1 style="margin-top: 20px">{{this.title}}</h1>
         <h6>{{this.date}}</h6>
-        <p>{{{this.content}}}</p>
-        {{/each}}
       </div>
-    </div>
-  </div>
+      
+        
+        
+        <p>{{{this.content}}}</p>
+        
+    </section> 
+</main> 
+{{/each}}

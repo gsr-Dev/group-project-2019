@@ -1,3 +1,14 @@
+* {
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body {
+    font-size: 1.3rem; 
+    background: #f9f9f9
+}
+
 .grid-container {
     margin: auto;
     display: grid;
@@ -64,8 +75,16 @@ body {
 }
 
 .container {
-    margin: 20px 20px; 
+    margin: auto;  
+    margin-top: 20px;
+    max-width: 1100px; 
+    overflow: auto;
+    padding: 0 2rem; 
  
+} 
+
+.alert {
+    background-color: #f0dab1 ; 
 }
 /*****************************************************************/
 
@@ -97,20 +116,19 @@ div.card > .card-body {
     padding-left: 10px;
     padding-right: 10px;
     height: 100%;
+} 
+
+div.card-header {
+    background-color: #f6edcf;
 }
 
-/* div.card > .card-footer {
-    width: 100%;
-} */
 /*****************************************************************/
 
 /* Nav */
 /*****************************************************************/
 .navbar {
-    
-    border: 0.5px solid black;
-    padding: 1px;
-    
+    background-color: #A4D7E1; 
+    color: white;
 } 
 
 .nav {
@@ -118,13 +136,6 @@ div.card > .card-body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center; 
-     
-    
-}
-
-.navbar-brand {
-
-    color: black
 }
 
 .nav .nav-link {
@@ -138,21 +149,26 @@ div.card > .card-body {
     padding: 0px; 
 } 
 
-#logoHover { 
-    transition-duration: 0.3s; 
-}
-
-
-
 #logo:hover {
-    border: 2px solid black;
+    cursor: pointer;
 } 
 
-#accountButton {
-    margin-right: 5px 
+/*****************************************************************/
+
+/* Form box */ 
+/*****************************************************************/ 
+
+#formBox { 
+    border-style: solid;
+    border-color: #a4d7e1; 
+    padding: 5px; 
+    background-color: #a4d7e1; 
+    color: white; 
+
 }
 
-/*****************************************************************/
+
+/*****************************************************************/ 
 
 /* Grid */
 /*****************************************************************/
@@ -189,9 +205,27 @@ div.card > .card-body {
     color: black; 
 }  
 
-#signinButton { 
-    margin-right: 5px
+#allButtons { 
+    margin-right: 2px; 
+    margin-left: 2px;
+    border-color: #f6edcf; 
+
+}  
+
+#darkButtons {
+    border-color: #a4d7e1;
 }
 
 
-  /*****************************************************************/
+#darkButtons:hover {
+    background-color: #a4d7e1; 
+}
+
+  /*****************************************************************/ 
+  /****Media****/ 
+
+  @media(max-width: 700px) {
+      .card {
+          display: block;
+        }
+  }

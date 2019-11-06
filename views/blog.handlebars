@@ -1,22 +1,40 @@
-<div class="container">
-
-    {{! Display a message if one was provided. }}
+{{! Display a message if one was provided. }}
+<div class="container mx-8">
     {{#if message}}
-    <div class="alert alert-success alert-dismissible fade show">
+    <div class="alert alert-dismissible fade show" role="alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         {{message}}
     </div>
-    {{/if}}
+    {{/if}} 
+</div>
 
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 mx-auto" >
-        {{#each predefinedArticles}}
-        <h1 style="margin-top: 80px">{{this.title}}</h1>
-        <h6>{{this.date}}</h6>
-        <div class="comment">{{{this.content}}}</div>
-          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Comment</button>
+
+    
+      
+     <main class="container"> 
+       {{#each predefinedArticles}}
+       <div class="container"> 
+       <section class="card" data-aos="fade-down"> 
+         <div class="card-header">
+           <h1 style="margin: auto;">{{this.title}}</h1>
+           <h6>{{this.date}}</h6> 
+          </div>  
+          <div class="card-body" style="margin: auto;">{{{this.content}}}</div>
+          <button type="button" id="darkButtons" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">Comment</button>
+        </section>  
+         </div>
+        {{/each}}
+      </main>
+      
+     
+      
+    
+ 
+      
+     
+     
+   
 
           <!-- Modal -->
           <div class="modal fade 	" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -70,13 +88,13 @@
               </div>
             </div>
           </div>    
-         {{/each}}
+         
       </div>
      
-    </div>
-  </div>
+    
 
-</div>
+
+
 
   {{!-- </form><script>
               let commentBox = document.querySelector('.comment');
