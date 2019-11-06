@@ -101,7 +101,7 @@ router.post("/updateAvatar", upload.single("imageFile"), async function(req, res
         console.log(username);
         console.log(selectedProfile);
         await userDao.updateAvatar(username, selectedProfile);
-        res.redirect("/account?message=you have successfully updated your avatar");
+        res.redirect("/account?message=You have successfully updated your avatar");
     }
 });
 

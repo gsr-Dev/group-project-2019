@@ -45,7 +45,7 @@ router.post("/account", async function (req, res) {
             // req.session.user = updatedUser;
             // console.log(req.session.user);
             // res.render("account");
-            res.redirect(`./account?message=information for the user, ${context.username} has been successfully updated!`);//tell client to reload page
+            res.redirect(`./account?message=Information for the user, ${context.username}, has been successfully updated!`);//tell client to reload page
             
         } catch (err) {
             console.log(err);

@@ -5,7 +5,7 @@
         <!-- left column -->
         <div class="col-md-3">
             <div class="text-center">
-                <img src="./images/{{avatar}}" class="avatar img-circle" alt="avatar">
+                <img src="./images/{{avatar}}" class="avatar img-circle" alt="avatar" id="avatar">
 
                 <a href="./avatar?action=updateAvatar">Update Avatar</a>
 
@@ -22,7 +22,7 @@
         <div class="col-md-9 personal-info">
             {{! Display a message if one was provided. }}
             {{#if message}}
-            <div class="alert alert-danger alert-dismissible fade show">
+            <div class="alert alert-success alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 {{message}}
             </div>
