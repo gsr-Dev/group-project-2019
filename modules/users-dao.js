@@ -106,29 +106,6 @@ async function verifyCredentials(username, password) {
             return null;
         }
 
-        // console.log(`user${user}`);
-        // const hashedPassword = await db.get(SQL`
-        // select salthashpassword from users 
-        // where username = ${username}`);
-        // console.log(`hashedpassword${JSON.stringify(hashedPassword)}`);
-
-        // //Object.values returns the hash string as an array
-        // const hashOnly = Object.values(hashedPassword);
-
-        // const hashArray = hashOnly[0];
-
-        // const stringifiedHashedPassword = JSON.stringify(hashArray);
-
-        // //This removes the quotations from the hash string in order for verify() to compare it to the password input by the user 
-        // string = stringifiedHashedPassword.slice(1, -1);
-        // console.log(string);
-        // console.log(password);
-        // //Verifies that the password the user input matches the hashed password in the database
-        // if (passwordHash.verify(password, string)) {
-        //     return user;
-        // } else {
-        //     return null;
-        // }
     } catch (err) {
         console.log(`verifyCredentials error: ${err}`);
         return null;
