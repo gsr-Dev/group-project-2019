@@ -95,30 +95,42 @@ async function verifyCredentials(username, password) {
 
     try {
         const user = await retrieveUserByUserName(username);
-        console.log(`user${user}`);
-        const hashedPassword = await db.get(SQL`
-        select salthashpassword from users 
-        where username = ${username}`);
-        console.log(`hashedpassword${JSON.stringify(hashedPassword)}`);
+        console.log(`verifyCredentials user ${username}`);
+        console.log(user);
+        const isAuthenticated = passwordHash.verify(password, user.salthashpassword);
 
-        //Object.values returns the hash string as an array
-        const hashOnly = Object.values(hashedPassword);
-
-        const hashArray = hashOnly[0];
-
-        const stringifiedHashedPassword = JSON.stringify(hashArray);
-
-        //This removes the quotations from the hash string in order for verify() to compare it to the password input by the user 
-        string = stringifiedHashedPassword.slice(1, -1);
-        console.log(string);
-        console.log(password);
-        //Verifies that the password the user input matches the hashed password in the database
-        if (passwordHash.verify(password, string)) {
+        if (isAuthenticated) {
             return user;
-        } else {
+        }
+        else {
             return null;
         }
+
+        // console.log(`user${user}`);
+        // const hashedPassword = await db.get(SQL`
+        // select salthashpassword from users 
+        // where username = ${username}`);
+        // console.log(`hashedpassword${JSON.stringify(hashedPassword)}`);
+
+        // //Object.values returns the hash string as an array
+        // const hashOnly = Object.values(hashedPassword);
+
+        // const hashArray = hashOnly[0];
+
+        // const stringifiedHashedPassword = JSON.stringify(hashArray);
+
+        // //This removes the quotations from the hash string in order for verify() to compare it to the password input by the user 
+        // string = stringifiedHashedPassword.slice(1, -1);
+        // console.log(string);
+        // console.log(password);
+        // //Verifies that the password the user input matches the hashed password in the database
+        // if (passwordHash.verify(password, string)) {
+        //     return user;
+        // } else {
+        //     return null;
+        // }
     } catch (err) {
+        console.log(`verifyCredentials error: ${err}`);
         return null;
     }
 }
@@ -165,11 +177,22 @@ async function retrieveAllUsers() {
 async function updateUser(user) {
     const db = await dbPromise;
 
+    let hashedPassword = passwordHash.generate(user.password);
+
+    const selectedUser = await db.get(SQL`
+    select username from users
+    where id = ${user.id}`);
+
     await db.run(SQL`
         update users
         set username = ${user.username}, realName = ${user.realName}, password = ${user.password}, dob = ${user.dob}, 
-        email = ${user.email}, description = ${user.description}
-        where id = ${user.id}`);      
+        email = ${user.email}, description = ${user.description}, salthashpassword = ${hashedPassword}
+        where id = ${user.id}`);
+
+    await db.run(SQL`
+        update profile
+        set username = ${user.username}
+        where username = ${selectedUser.username}`);
 }
 
 /**
@@ -230,7 +253,7 @@ async function updateAvatar(username, imgName) {
     await db.run(SQL`
         update profile
         set image = ${imgName} 
-        where username = ${username}`);      
+        where username = ${username}`);
 }
 
 async function retrieveAvatar(username) {

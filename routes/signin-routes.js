@@ -40,7 +40,7 @@ router.post("/signin", async function (req, res) {
 
     try {
         const user = await userDao.verifyCredentials(username, password);
-        console.log(`return here${user}`);
+        console.log(`return here ${user}`);
         if (user) {
             req.session.user = user;
             res.redirect("./blog");

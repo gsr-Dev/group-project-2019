@@ -20,7 +20,6 @@ router.get("/account", async function (req, res) {
 router.post("/account", async function (req, res) {
 
     const retrievedAvatar = userDao.retrieveAvatar(req.session.user.username);
-
     const context = {
         id: req.session.user.id,
         username: req.body.username,
@@ -29,7 +28,7 @@ router.post("/account", async function (req, res) {
         email: req.body.email,
         dob: req.body.dob,
         description: req.body.description,
-        avatar: retrievedAvatar[0].image
+        avatar: retrievedAvatar.image
     }
 
     console.log(context);
