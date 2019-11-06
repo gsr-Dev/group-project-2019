@@ -1,8 +1,8 @@
 <script src="/js/signup-client.js"></script>
 
-<div class="container">
+<div class="container" style="margin-top: 50px;">
 
-    <form action="./signup" method="POST" id="formBox">
+    <form action="./signup" method="POST" class="border border-warning text-center mr-2 py-2 px-2">
 
         {{! Display a message if one was provided. }}
         {{#if message}}
@@ -52,7 +52,7 @@
         </div>
 
         <div class="flex-row justify-sb align-center">
-            <button id="allButtons" class="btn btn-outline-primary" type="submit" name="toAvatar">Next</button>
+            <button id="allButtons" class="btn btn-outline-warning" type="submit" name="toAvatar">Next</button>
         </div>
     </form>
 

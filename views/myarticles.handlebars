@@ -1,8 +1,7 @@
 <div class="container">
-
-    <div class="container">
+    <div class="container d-flex justify-content-center" style="margin-top: 50px;">
         <div class="col-md-10 mx-auto">
-        <a href="./addArticles" role="button" class="btn btn-outline-primary">Add Articles</a>
+            <a href="./addArticles" role="button" class="btn btn-outline-warning">Add Articles</a>
         </div>
     </div>
 
@@ -12,11 +11,13 @@
 
                 {{#each userArticle}}
                 {{!-- <h1>{{this.title}}</h1> --}}
-                <a href="./individualArticle?message={{this.id}}" style="text-decoration: none"><h1>{{this.title}}</h1>
-                <h6>{{this.date}}</h6>
-                <p>{{{this.content}}}</p></a>
+                <a href="./individualArticle?message={{this.id}}" style="text-decoration: none">
+                    <h1>{{this.title}}</h1>
+                    <h6>{{this.date}}</h6>
+                    <p>{{{this.content}}}</p>
+                </a>
                 {{/each}}
             </div>
         </div>
     </div>
-    </div>
+</div>

@@ -1,12 +1,9 @@
 * {
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box;  
     font-family: 'Oxygen', sans-serif;
 } 
 
 body {
-    font-size: 1.3rem; 
+    
     background: #f9f9f9
 }
 
@@ -26,7 +23,7 @@ body {
 
 #articles {
     grid-area: articles; 
-    border-color: #00A6FB;  
+  
 }
 
 #information {
@@ -61,7 +58,16 @@ body {
 
 .panel>h2 {
     text-align: center;
+}  
+
+/* Nav  */
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
+
+
+
 
 /* Main page layout */
 /*****************************************************************/
@@ -71,26 +77,15 @@ body {
     
 }
 
-.container {
-    margin: auto;  
-    margin-top: 0px;
-    max-width: 1100px; 
-    overflow: auto;
-    /* padding: 0 2rem;  */
- 
-} 
 
-.alert {
-    background-color: #FFBA08; 
-} 
+
 
 .jumbotron {
     background-color: white !important; 
-    margin-top: 0px; 
-    padding: 0%; 
-    height: 250px; 
-    justify-content: space-evenly;    
+    display: flex;
+    justify-content: center;  
 
+    
 }
 
 #jumboimg {
@@ -129,10 +124,7 @@ div.card .card-img {
     display: block;
 }
 
-/* div.card img:hover, img:target {
-    border: 3px solid rgb(45, 173, 216);
-    margin: 0;
-  } */
+
 
 div.card>.card-body {
     border       : 1px solid #E6E7E9;
@@ -147,42 +139,10 @@ div.card-header {
 
 /*****************************************************************/
 
-/* Nav */
-/*****************************************************************/
-.navbar {
-    background-color: #00A6FB; 
-    color: white; 
-    margin: 0%; 
-    height: 50px;
-} 
 
-.nav {
-    display        : flex;
-    flex-direction : row;
-    justify-content: flex-start;
-    align-items: center; 
-}
-
-.nav .nav-link {
-    padding  : 4px 12px;
-    font-size: 18px;
-    color: black; 
-}
-
-
-/*****************************************************************/
 
 /* Form box */ 
 /*****************************************************************/ 
-
-#formBox { 
-    border-style: solid;
-    border-color: #00A6FB; 
-    padding: 5px; 
-    background-color: #EAEBED; 
-    color: black; 
-
-}
 
 
 /*****************************************************************/ 
@@ -232,25 +192,9 @@ div.card [type=radio]:checked+img {
     margin-top: 20px;   
 }  
 
-#allButtons { 
-    margin-right: 2px; 
-    margin-left: 2px;
-    
-
-}  
-
-#home { 
-    color: white; 
-} 
-
 #save { 
     margin-top: 20px; 
 }
-  /*****************************************************************/ 
-  /****Media****/ 
 
-  @media(max-width: 700px) {
-      .card {
-          display: block;
-        }
-  }
+
+
