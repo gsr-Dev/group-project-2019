@@ -29,7 +29,7 @@ router.post("/deleteAccount", async function (req, res) {
             await userDao.deleteUser(context.username);
 
             delete req.session.user;
-            res.redirect(`./home?message=The user, "${context.username}" has been successfully deleted!`);
+            res.redirect(`./?message=The user, "${context.username}" has been successfully deleted!`);
         }
         else {
             res.redirect("./deleteAccount?message=the username does not exist!");

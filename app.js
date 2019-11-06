@@ -74,6 +74,10 @@ app.use(individualArticleRouter);
 const editArticleRouter = require("./routes/editarticle-routes.js");
 app.use(editArticleRouter);
 
+// Setup comments routes
+const commentsRouter = require("./routes/comment-routes.js");
+app.use(commentsRouter);
+
 // Setup setting routes
 const accountRouter = require("./routes/account-routes.js");
 app.use(accountRouter); 

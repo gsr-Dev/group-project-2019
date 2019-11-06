@@ -32,8 +32,10 @@ async function getCommentsByArticlesId (id){
     const db = await dbPromise;
 
     const comments = await db.all(SQL`
-    select content from comments 
-    where articleID = ${id}`);
+	select p.image, c.content 
+    from comments c, profile p
+    where c.username = p.username AND c.articleID = ${id}
+    order by date desc`);
 
 
     return comments;
@@ -45,7 +47,7 @@ async function createComments(user, content,articlesID) {
    const db = await dbPromise;
  
    const result = await db.run(SQL`
-       insert into comments (username, date, content, articlesID) values(${user.username},datetime('now'),${content}, ${articlesID})`
+       insert into comments (username, date, content, articleID) values(${user.username},datetime('now'),${content}, ${articlesID})`
    );
  
    // Get the auto-generated ID value, and assign it back to the user object.

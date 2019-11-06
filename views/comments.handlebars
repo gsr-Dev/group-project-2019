@@ -1,0 +1,58 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-xl-8 col-md-12 mx-auto">
+            <h1>{{article.title}}</h1>
+            <h6>{{article.date}}</h6>
+            <div>{{{article.content}}}</div>
+            <br>
+            <button id="darkButtons" class="btn btn-outline-primary" data-toggle="collapse"
+                data-target="#collapseExample">Comment</button>
+        </div>
+        <div class="col-xl-8 col-md-12 mx-auto">
+            <div class="collapse" id="collapseExample">
+                <form action="./comments" method="POST">
+                    <textarea name="comment" id="" rows="4" style="width:100%"></textarea>
+                    <input type="hidden" name="articlesId" value="{{article.id}}">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-target="#collapseExample"
+                        data-toggle="collapse">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xl-8 col-md-12 mx-auto">
+            {{#each comments}}
+
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            
+                            <img src="./images/thumbnails/{{this.image}}" class="img img-rounded img-fluid" />
+                            <p class="text-secondary text-center">{{../article.date}}</p>
+
+                        </div>
+
+                        <div class="col-md-10">
+                            <p class="float-left"><strong>{{../article.username}}</strong></p>
+                            <p>{{this.content}}</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+    </div>
+
+</div>

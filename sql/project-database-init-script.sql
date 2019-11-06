@@ -40,6 +40,5 @@ create table comments (
     date datetime,
     content text,
     articleID integer not null,
-    foreign key (username) references users(username),
-    foreign key (articleID) references articles(id)
+    foreign key (username) references users(username)
 )

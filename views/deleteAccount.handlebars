@@ -2,11 +2,9 @@
 
     <!-- edit form column -->
     <div class="col-md-9 personal-info">
-        <div class="alert alert-info alert-dismissable">
-            <a class="panel-close close" data-dismiss="alert">×</a>
-            <i class="fa fa-coffee"></i>
+        <p>
             To delete your account, please provide your username and click 'Delete Account'.
-        </div>
+        </p>
         {{!-- <h3>Personal info</h3> --}} {{! Display a message if one was provided. }}
         {{#if message}}
         <div class="alert alert-danger alert-dismissible fade show">
@@ -15,7 +13,7 @@
         </div>
         {{/if}}
 
-        <form action="./deleteAccount" method="POST" class=="form-horizontal">
+        <form action="./deleteAccount" method="POST" class="form-horizontal">
             <p class="h4 mb-4">Delete your account information</p>
             <div class="flex-col mb">
                 <label for="txtUsername">Username:</label>
