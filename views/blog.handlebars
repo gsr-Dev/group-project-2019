@@ -12,44 +12,53 @@
   <div class="container">
     <div class="row">
       <div class="col-md-10 mx-auto">
-        {{#each allArticles}}
+        {{#each articles}}
         <h1 style="margin-top: 80px">{{this.title}}</h1>
         <h6>{{this.date}}</h6>
         <p>{{{this.content}}}<p>
-            <button type="button" class="btn btn-secondary" data-toggle="modal"
-              data-target="#exampleModal">Comment</button>
+          {{!-- <form action="./blog" method="POST">
+          <input type="hidden" name="articlesId" value="{{this.id}}" required> --}}
+            <button type="submit" class="btn btn-secondary" data-toggle="modal"
+              data-target="#exampleModal-{{this.id}}">Comment</button>
+            {{!-- </form> --}}
 
             <!-- Modal -->
-            <div class="modal fade 	" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
+            <div class="modal fade" id="exampleModal-{{this.id}}" tabindex="-1" role="dialog">
               <div class="modal-dialog mw-100 w-75" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
 
                     <div class="container">
-
+                     {{#each ../comments}}
 
                       <div class="card">
+
                         <div class="card-body">
                           <div class="row">
+
                             <div class="col-md-2">
+
                               <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
-                              <p class="text-secondary text-center">{{datatime}}</p>
+                              <p class="text-secondary text-center">{{../this.date}}</p>
+
                             </div>
+
                             <div class="col-md-10">
                               <p>
                                 <a class="float-left"
-                                  href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>{{username}}</strong></a>
+                                  href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>{{../this.username}}</strong></a>
 
                               </p>
                               <div class="clearfix"></div>
-                              <p>{{comment.content}}</p>
+                              <p>{{this.comments}}</p>
 
                             </div>
+
                           </div>
 
                         </div>
                       </div>
+                      {{/each}}
                     </div>
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -62,6 +71,7 @@
                       <textarea name="comment" id="" rows="4" style="width:100%"></textarea>
                     </div>
                     <div class="modal-footer">
+                      <input type="hidden" name="articlesId" value="{{this.id}}" required>
                       <button type="submit" class="btn btn-primary">Save</button>
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
@@ -71,6 +81,8 @@
             </div>
             {{/each}}
       </div>
+
     </div>
   </div>
+
 </div>

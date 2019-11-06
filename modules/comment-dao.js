@@ -28,11 +28,13 @@ async function getCommentImage(username) {
 
 }
 
-async function getComments() {
+async function getCommentsByArticlesId (id){
     const db = await dbPromise;
 
     const comments = await db.all(SQL`
-        select * from articles`);
+    select content from comments 
+    where articleID = ${id}`);
+
 
     return comments;
 
@@ -98,7 +100,7 @@ async function deleteCommentsByUsername(username) {
  
 module.exports = { 
     addComments,
-    getComments,
+    getCommentsByArticlesId,
     createComments,
     getUserComments,
     deleteComments,
