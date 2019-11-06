@@ -11,16 +11,16 @@ async function addComments() {
 
         const com = comments[i];
 
-        await db.run(SQL`
+        await db.run(SQL `
             insert into articles (username, title, date, content)
             values (${com.username}, ${com.date}, ${com.content})`);
-    }   
+    }
 
 }
 async function getCommentImage(username) {
     const db = await dbPromise;
 
-    const image = await db.get(SQL`
+    const image = await db.get(SQL `
         select image from profile 
         where username = ${username}`);
 
@@ -28,11 +28,11 @@ async function getCommentImage(username) {
 
 }
 
-async function getCommentsByArticlesId (id){
+async function getCommentsByArticlesId(id) {
     const db = await dbPromise;
 
-    const comments = await db.all(SQL`
-	select p.image, c.content 
+    const comments = await db.all(SQL `
+	select p.image, c.content, c.username
     from comments c, profile p
     where c.username = p.username AND c.articleID = ${id}
     order by date desc`);
@@ -42,52 +42,51 @@ async function getCommentsByArticlesId (id){
 
 }
 
- 
-async function createComments(user, content,articlesID) {
-   const db = await dbPromise;
- 
-   const result = await db.run(SQL`
-       insert into comments (username, date, content, articleID) values(${user.username},datetime('now'),${content}, ${articlesID})`
-   );
- 
-   // Get the auto-generated ID value, and assign it back to the user object.
-   user.id = result.lastID;
- 
-   // return result for testing
-   return result;
+
+async function createComments(user, content, articlesID) {
+    const db = await dbPromise;
+
+    const result = await db.run(SQL `
+       insert into comments (username, date, content, articleID) values(${user.username},datetime('now'),${content}, ${articlesID})`);
+
+    // Get the auto-generated ID value, and assign it back to the user object.
+    user.id = result.lastID;
+
+    // return result for testing
+    return result;
 };
 
-async function getUserComments(user){
-   const db = await dbPromise;
- 
-   const result = await db.all(SQL`
+async function getUserComments(user) {
+    const db = await dbPromise;
+
+    const result = await db.all(SQL `
        select id, date, content from comments
        where username = ${user.username}`);
- 
-   return result;
+
+    return result;
 };
- 
-async function deleteComments (){
-   const db = await dbPromise;
- 
-   const result= await db.get(SQL`
+
+async function deleteComments() {
+    const db = await dbPromise;
+
+    const result = await db.get(SQL `
        delete from comments
        where id = ${id}`);
- 
-   return result;
+
+    return result;
 };
 
-async function getCommentById(id){
+async function getCommentById(id) {
     const db = await dbPromise;
-  
-    const result = await db.get(SQL`
+
+    const result = await db.get(SQL `
         select date, content from comments
         where id = ${id}`);
-  
-    return result;
- };
 
- /**
+    return result;
+};
+
+/**
  * Deletes all comments by username from the database.
  * 
  * @param {number} username the user's username
@@ -95,12 +94,12 @@ async function getCommentById(id){
 async function deleteCommentsByUsername(username) {
     const db = await dbPromise;
 
-    await db.run(SQL`
+    await db.run(SQL `
         delete from comments
         where username = ${username}`);
 }
- 
-module.exports = { 
+
+module.exports = {
     addComments,
     getCommentsByArticlesId,
     createComments,
@@ -109,4 +108,4 @@ module.exports = {
     getCommentById,
     getCommentImage,
     deleteCommentsByUsername
- }
+}
