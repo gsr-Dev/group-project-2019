@@ -9,7 +9,7 @@ const passwordHash = require("password-hash");
  * to the user.
  * 
  * @param user the user to insert
- * @param password 
+ * 
  */
 async function createUser(user) {
     const db = await dbPromise;

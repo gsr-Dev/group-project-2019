@@ -1,3 +1,15 @@
+* {
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;  
+    font-family: 'Oxygen', sans-serif;
+} 
+
+body {
+    font-size: 1.3rem; 
+    background: #f9f9f9
+}
+
 .grid-container {
     margin               : auto;
     display              : grid;
@@ -13,7 +25,8 @@
 }
 
 #articles {
-    grid-area: articles;
+    grid-area: articles; 
+    border-color: #00A6FB;  
 }
 
 #information {
@@ -38,21 +51,6 @@
     border-radius: 5px;
 }
 
-.button {
-    width           : 100%;
-    text-align      : center;
-    color           : white;
-    background-color: teal;
-    border          : 1px solid black;
-    border-radius   : 5px;
-    padding-top     : 0.25em;
-    padding-bottom  : 0.25em;
-}
-
-.article-load {
-    margin-top      : 2em;
-    background-color: darkgreen;
-}
 
 .panel {
     padding      : 1em;
@@ -68,12 +66,42 @@
 /* Main page layout */
 /*****************************************************************/
 body {
-    margin : 0;
-    padding: 0;
+    margin: 0;
+    padding: 0; 
+    
 }
 
 .container {
-    margin: 20px 20px;
+    margin: auto;  
+    margin-top: 0px;
+    max-width: 1100px; 
+    overflow: auto;
+    /* padding: 0 2rem;  */
+ 
+} 
+
+.alert {
+    background-color: #FFBA08; 
+} 
+
+.jumbotron {
+    background-color: white !important; 
+    margin-top: 0px; 
+    padding: 0%; 
+    height: 250px; 
+    justify-content: space-evenly;    
+
+}
+
+#jumboimg {
+    width: 200px; 
+    height: 200px; 
+    margin-top: 0px; 
+    padding: 0%;
+} 
+
+.navbar-text {
+    margin-top: 0px;
 }
 
 /*****************************************************************/
@@ -81,6 +109,11 @@ body {
 
 /* Cards */
 /*****************************************************************/
+
+.card { 
+    margin-top: 20px;
+}
+
 div.card {
     background-color: white;
     box-shadow      : 3px 3px 5px #706F6F;
@@ -105,35 +138,54 @@ div.card>.card-body {
     border       : 1px solid #E6E7E9;
     padding-left : 10px;
     padding-right: 10px;
-    height       : 100%;
+    height: 100%;
+} 
+
+div.card-header {
+    background-color: #EAEBED;
 }
 
-/* div.card > .card-footer {
-    width: 100%;
-} */
 /*****************************************************************/
 
 /* Nav */
 /*****************************************************************/
+.navbar {
+    background-color: #00A6FB; 
+    color: white; 
+    margin: 0%; 
+    height: 50px;
+} 
+
 .nav {
     display        : flex;
     flex-direction : row;
     justify-content: flex-start;
-    align-items    : center;
-}
-
-.navbar-brand {
-    padding: 0px 10px;
-    margin : 2px;
+    align-items: center; 
 }
 
 .nav .nav-link {
     padding  : 4px 12px;
     font-size: 18px;
-    color    : white;
+    color: black; 
 }
 
+
 /*****************************************************************/
+
+/* Form box */ 
+/*****************************************************************/ 
+
+#formBox { 
+    border-style: solid;
+    border-color: #00A6FB; 
+    padding: 5px; 
+    background-color: #EAEBED; 
+    color: black; 
+
+}
+
+
+/*****************************************************************/ 
 
 /* Grid */
 /*****************************************************************/
@@ -164,11 +216,41 @@ div.card img {
 /* CHECKED STYLES */
 div.card [type=radio]:checked+img {
     outline: 3px solid rgb(45, 173, 216);
-}
+  } 
 
-#avatar {
+  /* Account page avatar */
+  #avatar {
     width: 100%;
     border-radius: 50%;
 }
 
-/*****************************************************************/
+
+/* Forgot password link */
+  #forgotPassword { 
+    color:  black; 
+    margin: auto; 
+    margin-top: 20px;   
+}  
+
+#allButtons { 
+    margin-right: 2px; 
+    margin-left: 2px;
+    
+
+}  
+
+#home { 
+    color: white; 
+} 
+
+#save { 
+    margin-top: 20px; 
+}
+  /*****************************************************************/ 
+  /****Media****/ 
+
+  @media(max-width: 700px) {
+      .card {
+          display: block;
+        }
+  }

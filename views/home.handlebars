@@ -1,38 +1,24 @@
-<div class="container">
-
-  {{! Display a message if one was provided. }}
-  {{#if message}}
-  <div class="alert alert-success alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    {{message}}</a>
-  </div>
-  {{/if}}
-
+{{! Display a message if one was provided. }}
+<div class="container mx-8">
+{{#if message}}
+ <div class="alert alert-dismissible fade show">
+   <button type="button" class="close" data-dismiss="alert">&times;</button>
+   {{message}}</a>
+ </div>
+{{/if}} 
 </div>
-<header>
-  <div class="overlay"></div>
-  <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" style="width:100%">
-    <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
-  </video>
-  <div class="container h-100">
-    <div class="d-flex h-100 text-center align-items-center">
-      <div class="w-100 text-white">
-        <h1 class="display-3" style="color:red">GSHK Blog</h1>
-        <p class="lead mb-0" style="color:red">Keep working hard guys</p>
-      </div>
-    </div>
-  </div>
-</header>
 
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 mx-auto">
-        {{#each allArticles}}
-        <h1>{{this.title}}</h1>
+
+{{#each allArticles}} 
+<main class="container">
+    <section class="card shadow-sm p-3 mb-5 bg-white rounded" data-aos="fade-down"> 
+      <div class="card-header">
+        <h1 style="margin-top: 20px">{{this.title}}</h1>
         <h6>{{this.date}}</h6>
-        <p>{{{this.content}}}</p>
-        {{/each}}
       </div>
-    </div>
-  </div>
+      <div class="card-body" style="margin: auto;">{{{this.content}}}</div>
+        
+    </section> 
+</main> 
+{{/each}}
