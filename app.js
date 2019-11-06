@@ -82,6 +82,9 @@ app.use(accountRouter);
 const resetRouter = require("./routes/reset-routes.js");  
 app.use(resetRouter); 
 
+// Setup delete-account routes
+const deleteAccountRouter = require("./routes/deleteAccount-routes.js");
+app.use(deleteAccountRouter);
 
 // Start the server running.
 app.listen(port, function () {

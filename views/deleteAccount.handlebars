@@ -1,0 +1,45 @@
+<div class="container">
+
+    <!-- edit form column -->
+    <div class="col-md-9 personal-info">
+        <div class="alert alert-info alert-dismissable">
+            <a class="panel-close close" data-dismiss="alert">×</a>
+            <i class="fa fa-coffee"></i>
+            To delete your account, please provide your username and click 'Delete Account'.
+        </div>
+        {{!-- <h3>Personal info</h3> --}} {{! Display a message if one was provided. }}
+        {{#if message}}
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{message}}
+        </div>
+        {{/if}}
+
+        <form action="./deleteAccount" method="POST" class=="form-horizontal">
+            <p class="h4 mb-4">Delete your account information</p>
+            <div class="flex-col mb">
+                <label for="txtUsername">Username:</label>
+                <input class="form-control mb-4" type="text" name="username" id="txtUsername" value="{{user.username}}">
+            </div>
+
+            <div class="flex-row justify-sb align-center">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-user-modal">
+                    Delete user
+                </button>
+            </div>
+            <div id="delete-user-modal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete account?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </form>
+    </div>
+</div>

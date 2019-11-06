@@ -29,11 +29,11 @@ router.post("/signup", async function (req, res) {
 
         try {
             // const sqlInfo = await userDao.createUser(req.body);
-            // const createUser = await userDao.retrieveUserById(sqlInfo.lastID);
+            // const createdUser = await userDao.retrieveUserById(sqlInfo.lastID);
             const userID = await userDao.createUser(req.body);
             const createdUser = await userDao.retrieveUserById(userID);
             req.session.user = createdUser;
-            res.redirect("./avatar");
+            res.redirect("./avatar?action=avatar");
          } catch (err) { 
              console.log(err); 
              res.redirect("./signup?message=Username already exist!Please use another username.");
