@@ -6,7 +6,6 @@ const userDao = require("../modules/users-dao.js");
 
 
 
-
 // Make the "user" session object available to the Handlebars engine by adding it to res.locals.
 router.use(function (req, res, next) {
     res.locals.user = req.session.user;
@@ -36,11 +35,12 @@ router.post("/signin", async function (req, res) {
     const username = req.body.username;
     const password = req.body.password; 
 
+
     // seperate out passwordHash from retrieveUserCredentials. password currently = boolean value
 
     try {
         const user = await userDao.verifyCredentials(username, password);
-        console.log(user);
+        console.log(`return here ${user}`);
         if (user) {
             req.session.user = user;
             res.redirect("./blog");

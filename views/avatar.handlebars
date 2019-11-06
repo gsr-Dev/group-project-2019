@@ -8,10 +8,10 @@
     </div>
     {{/if}}
 
-    <form action="./avatar" method="POST" enctype="multipart/form-data">
+    <form action="./{{action}}" method="POST" enctype="multipart/form-data">
 
         <p>Please select your profile photo or upload one below:</p>
-        
+
         <div class="form-group ">
             {{! Display all predefined avatars here.}}
             <div class="grid-3">
@@ -26,22 +26,15 @@
 
             </div>
         </div>
-        
+
         <div class="form-group">
             <input id="inpFile" type="file" class="form-control-file" name="imageFile"
                 accept=".png,.jpg,.jpeg,.bmp,.gif">
         </div>
-        {{!-- <div class="form-group">
-            <button type="submit">Click me to preview!</button>
-        </div> --}}
 
         <div class=" form-group flex-row justify-sb align-center">
-            <button class="btn btn-info btn-block my-4" type="submit" name="signup">Create account</button>
+            <button class="btn btn-info btn-block my-4" type="submit" name="signup">Save</button>
         </div>
 
     </form>
 </div>
-
-
-</div>
-
