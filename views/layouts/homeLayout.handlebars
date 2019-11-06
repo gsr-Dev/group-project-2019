@@ -25,16 +25,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 </head>
 
-<body style="background-color: #f9f9f9">
+<body>
 
-    <!--Jumbotron -->
-    <div class="jumbotron jumbotron-fluid text-center py-0 mb-0 mt-4">
-        <img src="/images/site/jumbotron-img.png" id="jumboimg"><br>
-        <h1 style="color: #FFBA08">Welcome to your new blog.</h1>
+    <!--Jumbotron --> 
+<div class="container fluid h-100" style="background-color: white;">
+    <div class="row align-items-center h-100">
+        <div class="col-6 mx-auto">
+            <div class="jumbotron jumbotron-fluid py-0 mb-0 mt-4">
+                <div class="container fluid">
+                    <img src="/images/site/jumbotron-img.png" id="jumboimg">
+                    <h1 style="color: #FFBA08">Welcome to your new blog.</h1>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
     {{!--Navigation --}}
-    <nav class="navbar navbar-expand-sm bg-warning">
+    <nav class="navbar navbar-expand-sm bg-warning justify-content-end">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -42,7 +50,7 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="d-flex bd-highlight mb-3"></div>
-            <ul class="navbar-nav">
+            <ul class="navbar-nav text-left">
                 <li class="nav-item">
                     <a class="nav-link bg-light" href="./signin">Sign in</a>
                 </li>
