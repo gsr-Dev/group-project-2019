@@ -1,3 +1,7 @@
+drop table if exists comments;
+
+drop table if exists articles;
+
 drop table if exists profile;
 
 drop table if exists users;
@@ -21,7 +25,7 @@ description TEXT
     foreign key (username) references users(username)
 );
 
-drop table if exists articles;
+
 
 create table articles (
     id integer not null primary key, 
@@ -32,7 +36,7 @@ create table articles (
     foreign key (username) references users(username)
 );
 
-drop table if exists comments;
+
 
 create table comments (
     id integer not null primary key, 

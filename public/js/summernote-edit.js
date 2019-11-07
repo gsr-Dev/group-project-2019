@@ -13,7 +13,7 @@ window.addEventListener("load", function() {
     upload.addEventListener('click', function () {
         const titleValue = document.querySelector('#title').value;
         $("#summernote").val($('#summernote').summernote('code'));
-        articleInner.innerHTML += $('#summernote').summernote('code');
+        articleInner.innerHTML = $('#summernote').summernote('code');
         titleInner.innerHTML = titleValue;
     });
 

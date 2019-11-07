@@ -12,9 +12,9 @@ window.addEventListener("load", function() {
     const articleInner = document.querySelector('#article-inner');
     const editor = document.querySelector('.card-block');
     upload.addEventListener('click', function () {
-        const titleValue = document.querySelector('#title').value;
+        let titleValue = document.querySelector('#title').value;
         $("#summernote").val($('#summernote').summernote('code'));
-        articleInner.innerHTML += $('#summernote').summernote('code');
+        articleInner.innerHTML = $('#summernote').summernote('code');
         titleInner.innerHTML = titleValue;
         editor.innerHTML="";
         titleValue="";

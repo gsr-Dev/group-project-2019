@@ -49,12 +49,25 @@ async function getUserArticles(user){
    const db = await dbPromise;
  
    const result = await db.all(SQL`
-       select id, title, date, content from articles
+       select * from articles
        where username = ${user.username}
        order by date desc`);
  
    return result;
 };
+
+
+async function countUserArticles(user){
+    const db = await dbPromise;
+  
+    const result = await db.all(SQL`
+        select count(id) as counter from articles
+        where username = ${user.username}`
+        );
+  
+    return result;
+ };
+
  
 //Delete individual article
 async function deleteArticle(id){
@@ -84,7 +97,7 @@ async function getArticleById(id){
     const db = await dbPromise;
   
     const result = await db.get(SQL`
-        select id, title, date, content from articles
+        select * from articles
         where id = ${id}`);
   
     return result;
@@ -102,7 +115,8 @@ async function getArticleById(id){
  
 module.exports = { 
     createArticle, 
-    getUserArticles, 
+    getUserArticles,
+    countUserArticles, 
     deleteArticle,//need to change the name
     deleteArticlesByUsername,
     addPredefinedArticle,

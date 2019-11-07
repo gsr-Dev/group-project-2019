@@ -2,15 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 // The DAO that handles CRUD operations for users.
+const usersDao = require("../modules/users-dao.js");
 const articlesDao = require("../modules/articles-dao.js");
 
 
 router.get("/editArticle", async function (req, res) {
     const articleID = req.query.message;
-    console.log(articleID);
-
-
-    const articleDetails = await articlesDao.getArticleById(articleID);
 
     const user = req.session.user;
 
@@ -18,7 +15,11 @@ router.get("/editArticle", async function (req, res) {
         res.redirect("./?message=You have signed out, please sign in again!");
     } else {
 
+        const articleDetails = await articlesDao.getArticleById(articleID);
+        const avatar = await usersDao.retrieveAvatar(user.username);
+
         const context = {
+            profile:avatar,
             article: articleDetails,
             layout: "blogLayout"
         }

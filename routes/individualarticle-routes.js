@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // The DAO that handles CRUD operations for users.
+const usersDao = require("../modules/users-dao.js");
 const articlesDao = require("../modules/articles-dao.js");
 
 
@@ -15,8 +16,10 @@ router.get("/individualArticle", async function(req, res) {
     } else {
 
         const getArticleByID = await articlesDao.getArticleById(articleID);
+        const avatar = await usersDao.retrieveAvatar(user.username);
 
         const context = {
+            profile: avatar,
             article: getArticleByID,
             layout: "blogLayout"
         }
