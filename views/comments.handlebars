@@ -47,6 +47,57 @@
 
                     </div>
 
+
+
+
+
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="btn-toolbar">
+
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModal">
+                                    Delete</button>
+
+                                <!-- Modal -->
+
+                                <div class="modal fade" id="exampleModal">
+
+                                    <div class="modal-dialog">
+
+                                        <div class="modal-content">
+                                            <form action="/comments.delete" method="POST">
+                                                <input type="hidden" name="commentID" value="{{this.id}}">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Deleting comment...
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete this comment?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
             {{/each}}

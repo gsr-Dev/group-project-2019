@@ -32,7 +32,7 @@ async function getCommentsByArticlesId(id) {
     const db = await dbPromise;
 
     const comments = await db.all(SQL `
-	select p.image, c.content, c.username
+	select p.image, c.content, c.username, c.id
     from comments c, profile p
     where c.username = p.username AND c.articleID = ${id}
     order by date desc`);
@@ -41,6 +41,19 @@ async function getCommentsByArticlesId(id) {
     return comments;
 
 }
+
+async function getArticleByCommentId(commentId) {
+    const db = await dbPromise;
+
+    const articleID = await db.get(SQL `
+        select articleID from comments 
+        where id = ${commentId}`);
+
+
+    return articleID;
+
+}
+
 
 
 async function createComments(user, content, articlesID) {
@@ -66,7 +79,7 @@ async function getUserComments(user) {
     return result;
 };
 
-async function deleteComments() {
+async function deleteComments(id) {
     const db = await dbPromise;
 
     const result = await db.get(SQL `
@@ -107,5 +120,6 @@ module.exports = {
     deleteComments,
     getCommentById,
     getCommentImage,
-    deleteCommentsByUsername
+    deleteCommentsByUsername,
+    getArticleByCommentId
 }

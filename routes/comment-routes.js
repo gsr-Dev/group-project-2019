@@ -45,4 +45,17 @@ router.post("/comments", async function (req, res) {
     res.redirect(`./comments?message=${articlesId}`);
 });
 
+router.post("/comments.delete", async function(req, res) {
+
+    const commentID = req.body.commentID;
+    console.log(`commentID is ${commentID}`);
+    const articlesID = await commentsDao.getArticleByCommentId(commentID);
+    console.log(articlesID);
+
+    await commentsDao.deleteComments(commentID);
+    
+    res.redirect(`./comments?message=${articlesID.articleID}`);
+});
+
+
 module.exports = router;
