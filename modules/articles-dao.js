@@ -10,7 +10,7 @@ async function addPredefinedArticle() {
     for (let i = 0; i < articles.length; i++) {
 
         const art = articles[i];
-        console.log("in addPredefinedArticle");
+        
 
         await db.run(SQL`
             insert into articles (username, title, date, content)

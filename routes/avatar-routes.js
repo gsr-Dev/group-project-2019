@@ -40,7 +40,7 @@ router.post("/avatar", upload.single("imageFile"), async function (req, res) {
 
     //Check if user has uploaded a photo, if so save and resize the file to the image folder
     const fileInfo = req.file;
-    console.log(fileInfo);
+  
     if (req.file != undefined) {
         // Move the image into the images folder
         const oldFileName = fileInfo.path;
@@ -67,8 +67,7 @@ router.post("/avatar", upload.single("imageFile"), async function (req, res) {
         await image.write(`./public/images/thumbnails/${selectedProfile}`);
 
         const user = await userDao.retrieveLastUser();
-        console.log(user);
-        console.log(selectedProfile);
+    
         await userDao.saveAvatar(user.username, selectedProfile);
         res.redirect("/blog?message=You have successfully created an account!");
     }
@@ -81,7 +80,7 @@ router.post("/updateAvatar", upload.single("imageFile"), async function (req, re
 
     //Check if user has uploaded a photo, if so save and resize the file to the image folder
     const fileInfo = req.file;
-    console.log(fileInfo);
+  
     if (req.file != undefined) {
         // Move the image into the images folder
         const oldFileName = fileInfo.path;
@@ -102,8 +101,7 @@ router.post("/updateAvatar", upload.single("imageFile"), async function (req, re
         res.redirect("/avatar?message=You must have a profile!");
     } else {
         const username = req.session.user.username;
-        console.log(username);
-        console.log(selectedProfile);
+     
         await userDao.updateAvatar(username, selectedProfile);
         res.redirect("/account?message=You have successfully updated your avatar");
     }

@@ -19,7 +19,7 @@ router.post("/deleteAccount", async function (req, res) {
     const context = {
         username: req.body.username,
     }
-    console.log(context);
+ 
     try {
         if (context.username) {
             

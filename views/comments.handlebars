@@ -8,7 +8,7 @@
             <h6>{{article.date}}</h6>
             <div>{{{article.content}}}</div>
             <br>
-            <button id="darkButtons" class="btn btn-outline-warning" data-toggle="collapse"
+            <button id="darkButtons" class="btn btn-outline-info" data-toggle="collapse"
                 data-target="#collapseExample">Comment</button>
         </div>
         <div class="col-xl-8 col-md-12 mx-auto">
@@ -16,7 +16,7 @@
                 <form action="./comments" method="POST" style="margin-top: 20px;">
                     <textarea name="comment" id="" rows="4" style="width:100%"></textarea>
                     <input type="hidden" name="articlesId" value="{{article.id}}">
-                    <button type="submit" class="btn btn-warning">Save</button>
+                    <button type="submit" class="btn btn-outline-info">Save</button>
                     <button type="button" class="btn btn-secondary" data-target="#collapseExample"
                         data-toggle="collapse">Close</button>
                 </form>
@@ -57,7 +57,7 @@
                         <div class="col-md-2">
                             <div class="btn-toolbar">
 
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                <button type="button" class="btn btn-outline-danger" data-toggle="modal"
                                     data-target="#exampleModal">
                                     Delete</button>
 

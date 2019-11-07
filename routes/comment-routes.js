@@ -40,7 +40,7 @@ router.post("/comments", async function (req, res) {
 
 
 
-    console.log(`user ${user} and articlesId ${articlesId} and content ${content}`);
+ 
     await commentsDao.createComments(user, content, articlesId);
     res.redirect(`./comments?message=${articlesId}`);
 });
@@ -48,9 +48,9 @@ router.post("/comments", async function (req, res) {
 router.post("/comments.delete", async function(req, res) {
 
     const commentID = req.body.commentID;
-    console.log(`commentID is ${commentID}`);
+  
     const articlesID = await commentsDao.getArticleByCommentId(commentID);
-    console.log(articlesID);
+
 
     await commentsDao.deleteComments(commentID);
     

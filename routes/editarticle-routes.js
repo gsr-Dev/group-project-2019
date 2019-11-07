@@ -32,9 +32,9 @@ router.post("/editArticle", async function (req, res) {
     const articleID = req.body.articleID;
     const title = req.body.title;
     const content = req.body.editordata;
-    //console.log(`user ${user} and title ${title} and content ${content}`);
+  
     await articlesDao.editArticle(articleID, title, content);
-    //res.redirect("./myArticles");
+   
 });
 
 

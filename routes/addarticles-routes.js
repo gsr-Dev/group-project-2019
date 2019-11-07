@@ -28,9 +28,9 @@ router.post("/addArticles", async function (req, res) {
     const user = req.session.user;
     const title = req.body.title;
     const content = req.body.editordata;
-    //console.log(`user ${user} and title ${title} and content ${content}`);
+   
     await articlesDao.createArticle(user, title, content);
-    //res.redirect("./myArticles");
+  
 });
 
 
