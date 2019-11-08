@@ -195,4 +195,8 @@ div.card [type=radio]:checked+img {
 }
 
 
+li{
+    margin: 0 5px;
+  }
+
 
