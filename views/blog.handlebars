@@ -13,13 +13,13 @@
   <div class="row">
     <section class="card shadow-sm p-3 mb-5 bg-white rounded" data-aos="fade-up">
       <div class="card-header">
-        <a href="./comments?message={{this.id}}" class="card-body" style="margin: auto">
+        <a href="./comments?message={{this.id}}" class="card-body" style="margin: auto; text-decoration: none">
           <h1>{{this.title}}</h1>
           <h6>Author: {{this.username}}</h6>
           <h6>{{this.date}}</h6>
-          </div>
-          <div class="card-body">{{{this.content}}}</div>
-        </a>
+      </div>
+      <div class="card-body">{{{this.content}}}</div>
+      </a>
     </section>
   </div>
   {{/each}}

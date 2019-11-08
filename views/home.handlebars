@@ -1,25 +1,25 @@
 {{! Display a message if one was provided. }}
 <div class="container mx-8" style="margin-top: 20px;">
-{{#if message}}
- <div class="alert  alert-info  alert-dismissible fade show">
-   <button type="button" class="close" data-dismiss="alert">&times;</button>
-   {{message}}</a>
- </div>
-{{/if}} 
+  {{#if message}}
+  <div class="alert  alert-info  alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{message}}</a>
+  </div>
+  {{/if}}
 </div>
 
 
 
-{{#each allArticles}} 
+{{#each allArticles}}
 <main class="container">
-    <section class="card shadow-sm p-3 mb-5 bg-white rounded" data-aos="fade-up"> 
-      <div class="card-header">
-        <h1 style="margin-top: 20px">{{this.title}}</h1>
-        <h6>Author: {{this.username}}</h6>
-        <h6>{{this.date}}</h6>
-      </div>
-      <div class="card-body" style="margin: auto;">{{{this.content}}}</div>
-        
-    </section> 
-</main> 
+  <section class="card shadow-sm p-3 mb-5 bg-white rounded" data-aos="fade-up">
+    <div class="card-header">
+      <h1 style="margin-top: 20px">{{this.title}}</h1>
+      <h6>Author: {{this.username}}</h6>
+      <h6>{{this.date}}</h6>
+    </div>
+    <div class="card-body" style="margin: auto;">{{{this.content}}}</div>
+
+  </section>
+</main>
 {{/each}}

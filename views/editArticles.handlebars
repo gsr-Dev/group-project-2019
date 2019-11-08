@@ -8,24 +8,24 @@
     </div>
 
     <div class="panel border border-secondary">
-        <a role="button" class="btn btn-warning mr-auto mb-2" href="./myArticles">Back to My Articles</a>
+        <a role="button" class="btn btn-warning mr-auto mb-2" href="./myArticles" style="text-decoration: none">Back to My Articles</a>
         <div class="border border-warning">
-        <p><strong>Preview your articles below:</strong></p>
-        <div id="title-inner">
+            <p><strong>Preview your articles below:</strong></p>
+            <div id="title-inner">
+                <br>
+            </div>
+            <div id="article-inner">
+                <br>
+            </div>
             <br>
-        </div>
-        <div id="article-inner">
-            <br>
-        </div>
-        <br>
         </div>
 
 
         <form action="/editArticle" method="POST">
-        <input class="form-control" name="articleID" value="{{article.id}}" type="hidden">
+            <input class="form-control" name="articleID" value="{{article.id}}" type="hidden">
             <label for="article-title">Article Title:</label>
-            <textarea class="form-control"  name="title" id="title">{{article.title}}</textarea>
-            <textarea class="form-control"  id="summernote" name="editordata">{{article.content}}</textarea>
+            <textarea class="form-control" name="title" id="title">{{article.title}}</textarea>
+            <textarea class="form-control" id="summernote" name="editordata">{{article.content}}</textarea>
             <button id="save" class="btn btn-outline-warning upload" type="submit">Save</button>
         </form>
     </div>

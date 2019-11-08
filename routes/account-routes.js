@@ -6,10 +6,9 @@ const userDao = require("../modules/users-dao.js");
 
 router.get("/account", async function (req, res) {
     res.locals.message = req.query.message;
-    
+
     retrievedAvatar = await userDao.retrieveAvatar(req.session.user.username);
-    
-    
+
     const context = {
         avatar: retrievedAvatar.image,
         layout: "blogLayout"
@@ -31,21 +30,21 @@ router.post("/account", async function (req, res) {
         avatar: retrievedAvatar.image
     }
 
-   
-        try {
-            
-            await userDao.updateUser(context);
-           
-            const retreivedUser = await userDao.retrieveUserByUserName(context.username);
-            console.log(retreivedUser);
-            req.session.user = retreivedUser;
-          
-            res.redirect(`./account?message=Information for the user, ${context.username}, has been successfully updated!`);//tell client to reload page
-            
-        } catch (err) {
-           
-            res.redirect("./account?message=cannot update the user information!");
-        }
+    try {
+
+        await userDao.updateUser(context);
+
+        const retreivedUser = await userDao.retrieveUserByUserName(context.username);
+        console.log(retreivedUser);
+        req.session.user = retreivedUser;
+
+        //tell the client-side to reload the page
+        res.redirect(`./account?message=Information for the user, ${context.username}, has been successfully updated!`);
+
+    } catch (err) {
+
+        res.redirect("./account?message=cannot update the user information!");
+    }
 });
 
 module.exports = router;

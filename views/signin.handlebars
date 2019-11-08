@@ -1,18 +1,17 @@
-
 <div class="container" style="margin-top: 50px;">
 
     {{! Display a message if one was provided. }}
     <div class="container mx-8">
-    {{#if message}}
-    <div class="alert alert-success alert-dismissible fade show">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{message}}, you can click here to <a href="./signup" class="alert-link">Sign Up</a>
+        {{#if message}}
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{message}}, you can click here to <a href="./signup" class="alert-link">Sign Up</a>
+        </div>
+        {{/if}}
     </div>
-    {{/if}}
-    </div>
-     
+
     <form action="./signin" method="POST" class="border border-warning text-center mr-2 py-2 px-2">
-        
+
         <p class="h1 mb-4">Sign in</p>
         <div class="flex-col mb">
             <label for="txtUsername">Username:</label>
@@ -31,5 +30,5 @@
         <div class="flex-col mb">
             <a id="forgotPassword" href="./forgotpsw">Forgot Password?</a>
         </div>
-     </form> 
+    </form>
 </div>

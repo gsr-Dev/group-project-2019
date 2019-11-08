@@ -12,15 +12,14 @@
 
                 {{#each userArticle}}
                 <section class="card shadow-sm p-3 mb-5 bg-white rounded" data-aos="fade-down">
-                {{!-- <h1>{{this.title}}</h1> --}}
-                <a href="./individualArticle?message={{this.id}}" style="text-decoration: none">
-                    <div class="card-header">
-                    <h1>{{this.title}}</h1>
-                    <h6>Author: {{this.username}}</h6>
-                    <h6>{{this.date}}</h6>
-                    </div>
-                    <div class="card-body">{{{this.content}}}</div>
-                </a>
+                    <a href="./individualArticle?message={{this.id}}" style="text-decoration: none">
+                        <div class="card-header">
+                            <h1>{{this.title}}</h1>
+                            <h6>Author: {{this.username}}</h6>
+                            <h6>{{this.date}}</h6>
+                        </div>
+                        <div class="card-body">{{{this.content}}}</div>
+                    </a>
                 </section>
                 {{/each}}
             </div>

@@ -40,23 +40,19 @@ router.post("/avatar", upload.single("imageFile"), async function (req, res) {
 
     //Check if user has uploaded a photo, if so save and resize the file to the image folder
     const fileInfo = req.file;
-  
+
     if (req.file != undefined) {
         // Move the image into the images folder
         const oldFileName = fileInfo.path;
         const newFileName = `./public/images/${fileInfo.originalname}`;
         fs.renameSync(oldFileName, newFileName);
 
-
         selectedProfile = fileInfo.originalname;
+
     } else {
         selectedProfile = req.body.radioImage;
     }
 
-
-
-
-    console.log(`this is selected profile: ${selectedProfile}`);
 
     if (selectedProfile == null) {
         res.redirect("/avatar?message=You must have a profile!");
@@ -67,7 +63,7 @@ router.post("/avatar", upload.single("imageFile"), async function (req, res) {
         await image.write(`./public/images/thumbnails/${selectedProfile}`);
 
         const user = await userDao.retrieveLastUser();
-    
+
         await userDao.saveAvatar(user.username, selectedProfile);
         res.redirect("/blog?message=You have successfully created an account!");
     }
@@ -80,7 +76,7 @@ router.post("/updateAvatar", upload.single("imageFile"), async function (req, re
 
     //Check if user has uploaded a photo, if so save and resize the file to the image folder
     const fileInfo = req.file;
-  
+
     if (req.file != undefined) {
         // Move the image into the images folder
         const oldFileName = fileInfo.path;
@@ -92,6 +88,7 @@ router.post("/updateAvatar", upload.single("imageFile"), async function (req, re
         image.resize(320, jimp.AUTO);
         await image.write(`./public/images/${fileInfo.originalname}`);
         selectedProfile = fileInfo.originalname;
+
     } else {
         selectedProfile = req.body.radioImage;
     }
@@ -101,7 +98,7 @@ router.post("/updateAvatar", upload.single("imageFile"), async function (req, re
         res.redirect("/avatar?message=You must have a profile!");
     } else {
         const username = req.session.user.username;
-     
+
         await userDao.updateAvatar(username, selectedProfile);
         res.redirect("/account?message=You have successfully updated your avatar");
     }

@@ -5,12 +5,9 @@ const userDao = require("../modules/users-dao.js");
 // The setup for the mailer functionality
 const nodemailer = require('nodemailer');
 
-
 router.get("/forgotpsw", async function (req, res) {
 
-    //const context = {message: "Please enter your Email Address below"}
     res.locals.message = req.query.message;
-
 
     res.render("forgotpsw");
 });
@@ -19,12 +16,10 @@ router.get("/forgotpsw", async function (req, res) {
 router.post("/forgotpsw", async function (req, res) {
     const email = req.body.email_address;
 
-
     try {
         const sendEmail = await userDao.retrieverUserEmail(email);
 
         if (sendEmail) {
-
 
             let transporter = nodemailer.createTransport({
                 service: 'gmail',
@@ -55,9 +50,9 @@ router.post("/forgotpsw", async function (req, res) {
 
             req.session.username = sendEmail.username;
             req.session.email = email;
-          
+
             res.redirect("/forgotpsw?message=A message has been sent to you by email with instructions on how to reset your password. (Please check your Junk Box too!)");
-            //&#9989; 
+
         } else {
 
             res.redirect("/forgotpsw");
@@ -86,7 +81,6 @@ router.post("/resetpsw", async function (req, res) {
     } else {
         try {
             const resetPassword = await userDao.updatePassword(newPassword, sessionData);
-            console.log(resetPassword);
             if (resetPassword) {
                 res.redirect('/signin?message=You have reset your password, please sign in again with your new password.');
                 delete sessionData;

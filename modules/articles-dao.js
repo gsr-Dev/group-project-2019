@@ -10,12 +10,11 @@ async function addPredefinedArticle() {
     for (let i = 0; i < articles.length; i++) {
 
         const art = articles[i];
-        
 
         await db.run(SQL`
             insert into articles (username, title, date, content)
             values (${art.username}, ${art.title}, ${art.date}, ${art.content})`);
-    }   
+    }
 
 }
 
@@ -30,54 +29,52 @@ async function getAllArticles() {
 
 }
 
- 
+
 async function createArticle(user, title, content) {
-   const db = await dbPromise;
- 
-   const result = await db.run(SQL`
+    const db = await dbPromise;
+
+    const result = await db.run(SQL`
        insert into articles (username, title, date, content) values(${user.username}, ${title},datetime('now'),${content})`
-   );
- 
-   // Get the auto-generated ID value, and assign it back to the user object.
-   user.id = result.lastID;
- 
-   // return result for testing
-   return result;
+    );
+
+    // Get the auto-generated ID value, and assign it back to the user object.
+    user.id = result.lastID;
+
+    return result;
 };
 
-async function getUserArticles(user){
-   const db = await dbPromise;
- 
-   const result = await db.all(SQL`
+async function getUserArticles(user) {
+    const db = await dbPromise;
+
+    const result = await db.all(SQL`
        select * from articles
        where username = ${user.username}
        order by date desc`);
- 
-   return result;
+
+    return result;
 };
 
-
-async function countUserArticles(user){
+async function countUserArticles(user) {
     const db = await dbPromise;
-  
+
     const result = await db.all(SQL`
         select count(id) as counter from articles
         where username = ${user.username}`
-        );
-  
-    return result;
- };
+    );
 
- 
+    return result;
+};
+
+
 //Delete individual article
-async function deleteArticle(id){
-   const db = await dbPromise;
- 
-   const result= await db.run(SQL`
+async function deleteArticle(id) {
+    const db = await dbPromise;
+
+    const result = await db.run(SQL`
        delete from articles
        where id = ${id}`);
- 
-   return result;
+
+    return result;
 };
 
 /**
@@ -93,34 +90,34 @@ async function deleteArticlesByUsername(username) {
         where username = ${username}`);
 }
 
-async function getArticleById(id){
+async function getArticleById(id) {
     const db = await dbPromise;
-  
+
     const result = await db.get(SQL`
         select * from articles
         where id = ${id}`);
-  
-    return result;
- };
 
- async function editArticle(articleID,title,content) {
+    return result;
+};
+
+async function editArticle(articleID, title, content) {
     const db = await dbPromise;
- 
+
     await db.run(SQL`
         update articles
         set title = ${title}, content = ${content}
         where id = ${articleID}`
     );
- }
- 
-module.exports = { 
-    createArticle, 
+}
+
+module.exports = {
+    createArticle,
     getUserArticles,
-    countUserArticles, 
-    deleteArticle,//need to change the name
+    countUserArticles,
+    deleteArticle,
     deleteArticlesByUsername,
     addPredefinedArticle,
     getAllArticles,
     getArticleById,
     editArticle
- }
+}

@@ -16,14 +16,13 @@ router.get("/blog", async function (req, res) {
 
         const allArticles = await articlesDao.getAllArticles();
         const avatar = await usersDao.retrieveAvatar(user.username);
- 
+
         const context = {
             user: user,
             profile: avatar,
             articles: allArticles,
             layout: "blogLayout"
         }
-
 
         res.render("blog", context);
     }

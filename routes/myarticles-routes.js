@@ -20,7 +20,7 @@ router.get("/myArticles", async function (req, res) {
         const context = {
             totalArticles: Object.values(totalArticles[0]),
             profile: avatar,
-            userArticle : getUserArticle,
+            userArticle: getUserArticle,
             layout: "blogLayout"
         }
 

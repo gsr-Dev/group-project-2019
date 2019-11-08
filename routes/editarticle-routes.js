@@ -19,7 +19,7 @@ router.get("/editArticle", async function (req, res) {
         const avatar = await usersDao.retrieveAvatar(user.username);
 
         const context = {
-            profile:avatar,
+            profile: avatar,
             article: articleDetails,
             layout: "blogLayout"
         }
@@ -32,9 +32,9 @@ router.post("/editArticle", async function (req, res) {
     const articleID = req.body.articleID;
     const title = req.body.title;
     const content = req.body.editordata;
-  
+
     await articlesDao.editArticle(articleID, title, content);
-   
+
 });
 
 

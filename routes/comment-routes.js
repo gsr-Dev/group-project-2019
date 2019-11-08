@@ -21,12 +21,12 @@ router.get("/comments", async function (req, res) {
         const commentsByArticlesId = await commentsDao.getCommentsByArticlesId(articleID);
 
         const avatar = await usersDao.retrieveAvatar(user.username);
-    
+
 
         const context = {
-            profile:avatar,
+            profile: avatar,
             article: getArticleByID,
-            comments:commentsByArticlesId,
+            comments: commentsByArticlesId,
             layout: "blogLayout"
         }
 
@@ -37,26 +37,21 @@ router.get("/comments", async function (req, res) {
 router.post("/comments", async function (req, res) {
 
     const user = req.session.user;
-    //const image = await commentsDao.getCommentImage(user.username);
     const content = req.body.comment;
     const articlesId = req.body.articlesId;
 
-
-
- 
     await commentsDao.createComments(user, content, articlesId);
     res.redirect(`./comments?message=${articlesId}`);
 });
 
-router.post("/comments.delete", async function(req, res) {
+router.post("/comments.delete", async function (req, res) {
 
     const commentID = req.body.commentID;
-  
+
     const articlesID = await commentsDao.getArticleByCommentId(commentID);
 
-
     await commentsDao.deleteComments(commentID);
-    
+
     res.redirect(`./comments?message=${articlesID.articleID}`);
 });
 
