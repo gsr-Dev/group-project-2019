@@ -6,6 +6,8 @@ const userDao = require("../modules/users-dao.js");
 
 router.get("/signup", async function (req, res) {
     res.locals.message = req.query.message;
+
+    
     res.render("signup");
 });
 

@@ -117,9 +117,6 @@ div.card {
     flex-direction  : column;
 }
 
-/* div.card .card-header {
-    width: 100%;
-} */
 
 div.card .card-img {
     display: block;
@@ -128,6 +125,7 @@ div.card .card-img {
 
 
 div.card>.card-body {
+    margin: auto;
     border       : 1px solid #E6E7E9;
     padding-left : 10px;
     padding-right: 10px;
