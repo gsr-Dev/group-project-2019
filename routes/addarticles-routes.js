@@ -16,7 +16,7 @@ router.get("/addArticles", async function (req, res) {
         const avatar = await usersDao.retrieveAvatar(user.username);
 
         const context = {
-            profile:avatar,
+            profile: avatar,
             layout: "blogLayout"
         }
         res.render("addArticles", context);
@@ -28,9 +28,9 @@ router.post("/addArticles", async function (req, res) {
     const user = req.session.user;
     const title = req.body.title;
     const content = req.body.editordata;
-   
+
     await articlesDao.createArticle(user, title, content);
-  
+
 });
 
 

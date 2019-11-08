@@ -3,30 +3,17 @@ const dbPromise = require("./database.js");
 const passwordHash = require("password-hash");
 
 
-
-/**
- * Inserts the given user into the database. Then, reads the ID which the database auto-assigned, and adds it
- * to the user.
- * 
- * @param user the user to insert
- * 
- */
 async function createUser(user) {
     const db = await dbPromise;
 
     // The users password is turned into a hashed password and sent to the project database  
-    let hashedPassword = passwordHash.generate(`${user.password}`)
+    let hashedPassword = passwordHash.generate(`${user.password}`);
 
     const result = await db.run(SQL`
     insert into users (username, password, salthashpassword, email, dob, realName, description) values(${user.username}, ${user.password}, ${hashedPassword}, ${user.email}, ${user.dob}, ${user.realName}, ${user.description})`
     );
 
     return result.lastID;
-    //Get the auto-generated ID value, and assign it back to the user object.
-    //user.id = result.lastID;
-
-    //return result for testing
-    // return result;
 }
 
 /**
@@ -79,7 +66,6 @@ async function retrieverUserEmail(email) {
 }
 
 
-
 /**
  * 
  * Gets the user with the given username and password from the database.
@@ -89,7 +75,7 @@ async function retrieverUserEmail(email) {
  * @param {string} password the user's password
  */
 
-// seperate out passwordHash from retrieveUserCredentials. password currently = boolean value
+// Seperate out passwordHash from retrieveUserCredentials.
 async function verifyCredentials(username, password) {
 
     try {
@@ -104,23 +90,24 @@ async function verifyCredentials(username, password) {
         }
 
     } catch (err) {
-        
+
         return null;
     }
 }
 
 
-/**
-     * 
-     * @param newPassword  
-     * @param sessionData
-     *  
-     */
 
+/**
+* Create a new password and generate hashed password, for the user stored in the session
+* @param newPassword  the new password provided by user
+* @param sessionData  the user stored on session
+*  
+*/
 async function updatePassword(newPassword, sessionData) {
     const db = await dbPromise;
+    //generate new hashed pasword
     let hashedPassword = passwordHash.generate(newPassword);
-    
+
     await db.run(SQL` 
         update users 
         set password = ${newPassword},salthashpassword = ${hashedPassword}
@@ -144,7 +131,7 @@ async function retrieveAllUsers() {
 }
 
 /**
- * Updates the given user in the database.
+ * Updates the given user in the database and display updated data in the /account page.
  * 
  * @param user the user to update
  */
@@ -163,6 +150,7 @@ async function updateUser(user) {
         email = ${user.email}, description = ${user.description}, salthashpassword = ${hashedPassword}
         where id = ${user.id}`);
 
+    //also update the 'profile' table which contains the avatar, as the 'users' table doesn't possess this info.
     await db.run(SQL`
         update profile
         set username = ${user.username}
@@ -191,7 +179,6 @@ async function retrieveLastUser() {
 
     return user;
 }
-
 
 
 async function saveAvatar(username, imgName) {

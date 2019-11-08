@@ -24,7 +24,6 @@ async function createArticle(user, title, content) {
     // Get the auto-generated ID value, and assign it back to the user object.
     user.id = result.lastID;
 
-    // return result for testing
     return result;
 };
 
@@ -80,18 +79,8 @@ async function getArticleById(id) {
     const db = await dbPromise;
 
     const result = await db.get(SQL`
-    select * from articles
-    where id = ${id}
-`);
-
-  
-    // select a.*, c.username,
-    // case
-    // when a.username =c.username then 'true' 
-    // else 'false' 
-    // end as enable
-    // from articles a, comments c
-    // where a.id = ${id} AND c.articleID=${id}
+        select * from articles
+        where id = ${id}`);
 
     return result;
 };
@@ -110,7 +99,7 @@ module.exports = {
     createArticle,
     getUserArticles,
     countUserArticles,
-    deleteArticle,//need to change the name
+    deleteArticle,
     deleteArticlesByUsername,
     addPredefinedArticle,
     getAllArticles,

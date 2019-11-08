@@ -36,22 +36,21 @@
 
 <body>
 
-    <!--Jumbotron --> 
-<div class="container fluid" style="background-color: white;">
-    <div class="row align-items-center h-100" style="background-color: white;">
-        <div class="col-6 mx-auto">
-            <div class="jumbotron jumbotron-fluid py-0 mb-0 mt-4">
-                <div class="container fluid" style="background-color: white;">
-                    <img src="/images/site/jumbotron-img.png" id="jumboimg" style="opacity: 1;">
-                    <h1  style="color: #FFBA08">Welcome to your new blog.</h1>
+    <!--Jumbotron -->
+    <div class="container fluid" style="background-color: white;">
+        <div class="row align-items-center h-100" style="background-color: white;">
+            <div class="col-6 mx-auto">
+                <div class="jumbotron jumbotron-fluid py-0 mb-0 mt-4">
+                    <div class="container fluid" style="background-color: white;">
+                        <img src="/images/site/jumbotron-img.png" id="jumboimg" style="opacity: 1;">
+                        <h1 style="color: #FFBA08">Welcome to your new blog.</h1>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
     {{!--Navigation --}}
-    {{!-- <nav class="navbar navbar-expand-sm bg-warning justify-content-end"> --}}
     <nav class="navbar navbar-expand-sm bg-warning d-flex flex-row-reverse sticky-top">
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -60,8 +59,8 @@
         </button>
 
         <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
-            
-            <ul class="navbar-nav text-right ">
+
+            <ul class="navbar-nav text-right">
                 <li class="nav-item">
                     <a class="btn btn-light" href="./signin">Sign in</a>
                 </li>
@@ -70,7 +69,7 @@
                 </li>
             </ul>
         </div>
-        
+
     </nav>
     {{{body}}}
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -80,7 +79,7 @@
             duration: 1000,
         });
     </script>
-    
+
 </body>
 
 </html>

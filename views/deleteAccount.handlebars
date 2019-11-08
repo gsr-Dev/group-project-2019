@@ -5,7 +5,7 @@
         <p>
             To delete your account, please provide your username and click 'Delete Account'.
         </p>
-        {{!-- <h3>Personal info</h3> --}} {{! Display a message if one was provided. }}
+        {{! Display a message if one was provided. }}
         {{#if message}}
         <div class="alert alert-danger alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -21,10 +21,11 @@
             </div>
 
             <div class="flex-row justify-sb align-center">
-                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete-user-modal">
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                    data-target="#delete-user-modal">
                     Delete user
                 </button>
-                
+
             </div>
             <div id="delete-user-modal" class="modal fade">
                 <div class="modal-dialog">

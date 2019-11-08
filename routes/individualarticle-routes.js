@@ -6,7 +6,7 @@ const usersDao = require("../modules/users-dao.js");
 const articlesDao = require("../modules/articles-dao.js");
 
 
-router.get("/individualArticle", async function(req, res) {
+router.get("/individualArticle", async function (req, res) {
     const articleID = req.query.message;
 
     const user = req.session.user;
@@ -28,7 +28,7 @@ router.get("/individualArticle", async function(req, res) {
     }
 });
 
-router.post("/individualArticle", async function(req, res) {
+router.post("/individualArticle", async function (req, res) {
     const articleID = req.body.articleID;
     await articlesDao.deleteArticle(articleID);
     res.redirect("./myArticles");

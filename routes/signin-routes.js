@@ -33,10 +33,7 @@ router.post("/signin", async function (req, res) {
 
     // Get the username and password submitted in the form
     const username = req.body.username;
-    const password = req.body.password; 
-
-
-    // seperate out passwordHash from retrieveUserCredentials. password currently = boolean value
+    const password = req.body.password;
 
     try {
         const user = await userDao.verifyCredentials(username, password);

@@ -11,7 +11,7 @@ router.get("/deleteAccount", async function (req, res) {
     const context = {
         layout: "blogLayout"
     }
-    res.render("deleteAccount",context);
+    res.render("deleteAccount", context);
 })
 
 router.post("/deleteAccount", async function (req, res) {
@@ -19,10 +19,10 @@ router.post("/deleteAccount", async function (req, res) {
     const context = {
         username: req.body.username,
     }
- 
+
     try {
         if (context.username) {
-            
+
             await commentDao.deleteCommentsByUsername(context.username);
             await articleDao.deleteArticlesByUsername(context.username);
             await userDao.deleteProfile(context.username);

@@ -1,7 +1,6 @@
 /**
  * Main application file.
  * 
- * NOTE: This file contains many required packages, but not all of them - you may need to add more!
  */
 
 // Setup Express
@@ -18,9 +17,9 @@ app.set("view engine", "handlebars");
 
 // Setup body-parser
 const bodyParser = require("body-parser");
-//app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json({limit: '5mb', extended: true}))
-app.use(bodyParser.urlencoded({limit: '5mb', extended: true}))
+// Resize the image file (especially large ones) to be able to upload
+app.use(bodyParser.json({ limit: '5mb', extended: true }));
+app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
 
 // Setup cookie-parser
 const cookieParser = require("cookie-parser");
@@ -29,16 +28,16 @@ app.use(cookieParser());
 // Setup express-session
 const session = require("express-session");
 app.use(session({
-   resave: false,
-   saveUninitialized: false,
-   secret: "CS719"
+    resave: false,
+    saveUninitialized: false,
+    secret: "CS719"
 }));
 
 // Make the "public" folder available statically
 const path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
 
-// Setup routes
+// Setup home routes
 const appRouter = require("./routes/home.js");
 app.use(appRouter);
 
@@ -58,19 +57,19 @@ app.use(avatarRouter);
 const blogRouter = require("./routes/blog-routes.js");
 app.use(blogRouter);
 
-// Setup myarticles routes
+// Setup my-articles routes
 const myarticlesRouter = require("./routes/myarticles-routes.js");
 app.use(myarticlesRouter);
 
-// Setup addarticles routes
+// Setup add-articles routes
 const addArticlesRouter = require("./routes/addarticles-routes.js");
 app.use(addArticlesRouter);
 
-// Setup addarticles routes
+// Setup add-individual-articles routes
 const individualArticleRouter = require("./routes/individualarticle-routes.js");
 app.use(individualArticleRouter);
 
-// Setup addarticles routes
+// Setup edit-articles routes
 const editArticleRouter = require("./routes/editarticle-routes.js");
 app.use(editArticleRouter);
 
@@ -78,13 +77,13 @@ app.use(editArticleRouter);
 const commentsRouter = require("./routes/comment-routes.js");
 app.use(commentsRouter);
 
-// Setup setting routes
+// Setup account-setting or account-displaying routes
 const accountRouter = require("./routes/account-routes.js");
-app.use(accountRouter); 
+app.use(accountRouter);
 
 // Setup reset routes 
-const resetRouter = require("./routes/reset-routes.js");  
-app.use(resetRouter); 
+const resetRouter = require("./routes/reset-routes.js");
+app.use(resetRouter);
 
 // Setup delete-account routes
 const deleteAccountRouter = require("./routes/deleteAccount-routes.js");

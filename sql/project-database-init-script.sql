@@ -6,19 +6,21 @@ drop table if exists profile;
 
 drop table if exists users;
 
-create table users (
-id INTEGER not null PRIMARY KEY,
-username varchar(64) unique not null,
-salthashpassword varchar(58) not null,
-email varchar(100),
-realName varchar(100),
-dob date,
-description TEXT
+create table users
+(
+    id INTEGER not null PRIMARY KEY,
+    username varchar(64) unique not null,
+    salthashpassword varchar(58) not null,
+    email varchar(100),
+    realName varchar(100),
+    dob date,
+    description TEXT
 );
 
- create table profile (
+create table profile
+(
 
-    id integer not null primary key, 
+    id integer not null primary key,
     username varchar(64) unique not null,
     image varchar(256) not null,
     foreign key (username) references users(username)
@@ -26,8 +28,9 @@ description TEXT
 
 
 
-create table articles (
-    id integer not null primary key, 
+create table articles
+(
+    id integer not null primary key,
     username varchar(64) not null,
     title varchar(128) not null,
     date datetime,
@@ -36,9 +39,9 @@ create table articles (
 );
 
 
-
-create table comments (
-    id integer not null primary key, 
+create table comments
+(
+    id integer not null primary key,
     username varchar(64) not null,
     date datetime,
     content text,
