@@ -101,7 +101,6 @@ module.exports = {
     countUserArticles,
     deleteArticle,
     deleteArticlesByUsername,
-    addPredefinedArticle,
     getAllArticles,
     getArticleById,
     editArticle
