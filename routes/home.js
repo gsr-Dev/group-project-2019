@@ -10,8 +10,6 @@ router.get("/", async function(req, res) {
     res.locals.title = "GSHK Project!";
     res.locals.message = req.query.message;
 
-    //Add dummy articles
-    //await articlesDao.addPredefinedArticle();
     const getallArticles = await articlesDao.getAllArticles();
     
     const context = {

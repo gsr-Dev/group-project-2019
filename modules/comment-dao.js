@@ -32,10 +32,18 @@ async function getCommentsByArticlesId(id) {
     const db = await dbPromise;
 
     const comments = await db.all(SQL `
-	select p.image, c.content, c.username, c.id
-    from comments c, profile p
-    where c.username = p.username AND c.articleID = ${id}
-    order by date desc`);
+    select DISTINCT c.date, p.image, c.content, c.username as commenter, c.id, a.username as articleAuthor,
+    case
+          when a.username =c.username then 'true' 
+          else 'false' 
+       end as enable
+        from comments c
+        join profile p on c.username = p.username
+        join articles a on a.id =c.articleID
+        where  c.articleID = ${id}
+        order by c.date desc
+`);
+
 
 
     return comments;
@@ -79,14 +87,12 @@ async function getUserComments(user) {
     return result;
 };
 
-async function deleteComments(id) {
+async function deleteCommentsById(id) {
     const db = await dbPromise;
-
-    const result = await db.get(SQL `
+    
+    const result = await db.run(SQL `
        delete from comments
        where id = ${id}`);
-
-    return result;
 };
 
 async function getCommentById(id) {
@@ -117,7 +123,7 @@ module.exports = {
     getCommentsByArticlesId,
     createComments,
     getUserComments,
-    deleteComments,
+    deleteCommentsById,
     getCommentById,
     getCommentImage,
     deleteCommentsByUsername,

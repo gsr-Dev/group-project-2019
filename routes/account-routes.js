@@ -5,16 +5,23 @@ const router = express.Router();
 const userDao = require("../modules/users-dao.js");
 
 router.get("/account", async function (req, res) {
+
+    const user = req.session.user;
+
+    if (user == undefined) {
+        res.redirect("./?message=You have signed out, please sign in again!");
+    } else {
     res.locals.message = req.query.message;
     
-    retrievedAvatar = await userDao.retrieveAvatar(req.session.user.username);
+    const avatar = await userDao.retrieveAvatar(user.username);
     
     
     const context = {
-        avatar: retrievedAvatar.image,
+        profile: avatar,
         layout: "blogLayout"
     }
     res.render("account", context);
+}
 })
 
 router.post("/account", async function (req, res) {

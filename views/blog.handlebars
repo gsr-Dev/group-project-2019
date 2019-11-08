@@ -11,15 +11,15 @@
 <main class="container">
   {{#each articles}}
   <div class="row">
-    <section class="card shadow-sm p-3 mb-5 bg-white rounded" data-aos="fade-up">
+    <section class="card shadow-sm p-3 mb-5 col-md-12 bg-white rounded" data-aos="fade-up">
       <div class="card-header">
-        <a href="./comments?message={{this.id}}" class="card-body" style="margin: auto">
-          <h1>{{this.title}}</h1>
+        <a href="./comments?message={{this.id}}"style="margin: auto">
+          <h1 class="card-title">{{this.title}}</h1>
           <h6>Author: {{this.username}}</h6>
           <h6>{{this.date}}</h6>
-          </div>
-          <div class="card-body">{{{this.content}}}</div>
-        </a>
+      </div>
+      <div class="card-body">{{{this.content}}}</div>
+      </a>
     </section>
   </div>
   {{/each}}

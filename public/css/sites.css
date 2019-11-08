@@ -124,8 +124,8 @@ div.card .card-img {
 
 
 div.card>.card-body {
-    margin: auto;
-    border       : 1px solid #E6E7E9;
+    margin: 0;
+    border: 1px solid #E6E7E9;
     padding-left : 10px;
     padding-right: 10px;
     height: 100%;
@@ -133,6 +133,7 @@ div.card>.card-body {
 
 div.card-header {
     background-color: #EAEBED;
+    width: 100%;
 }
 
 /*****************************************************************/

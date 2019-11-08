@@ -21,7 +21,6 @@ router.get("/comments", async function (req, res) {
         const commentsByArticlesId = await commentsDao.getCommentsByArticlesId(articleID);
 
         const avatar = await usersDao.retrieveAvatar(user.username);
-    
 
         const context = {
             profile:avatar,
@@ -37,7 +36,6 @@ router.get("/comments", async function (req, res) {
 router.post("/comments", async function (req, res) {
 
     const user = req.session.user;
-    //const image = await commentsDao.getCommentImage(user.username);
     const content = req.body.comment;
     const articlesId = req.body.articlesId;
 
@@ -55,7 +53,7 @@ router.post("/comments.delete", async function(req, res) {
     const articlesID = await commentsDao.getArticleByCommentId(commentID);
 
 
-    await commentsDao.deleteComments(commentID);
+    await commentsDao.deleteCommentsById(commentID);
     
     res.redirect(`./comments?message=${articlesID.articleID}`);
 });
