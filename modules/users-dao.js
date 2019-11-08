@@ -10,7 +10,7 @@ async function createUser(user) {
     let hashedPassword = passwordHash.generate(`${user.password}`);
 
     const result = await db.run(SQL`
-    insert into users (username, password, salthashpassword, email, dob, realName, description) values(${user.username}, ${user.password}, ${hashedPassword}, ${user.email}, ${user.dob}, ${user.realName}, ${user.description})`
+    insert into users (username, salthashpassword, email, dob, realName, description) values(${user.username}, ${hashedPassword}, ${user.email}, ${user.dob}, ${user.realName}, ${user.description})`
     );
 
     return result.lastID;
