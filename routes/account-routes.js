@@ -9,7 +9,6 @@ router.get("/account", async function (req, res) {
     
     retrievedAvatar = await userDao.retrieveAvatar(req.session.user.username);
     
-    console.log(retrievedAvatar.image);
     
     const context = {
         avatar: retrievedAvatar.image,
@@ -32,24 +31,19 @@ router.post("/account", async function (req, res) {
         avatar: retrievedAvatar.image
     }
 
-    console.log(context);
+   
         try {
             
             await userDao.updateUser(context);
-            // req.session.user = updatedUser;
-            // console.log(req.session.user);
+           
             const retreivedUser = await userDao.retrieveUserByUserName(context.username);
             console.log(retreivedUser);
             req.session.user = retreivedUser;
-            // const updatedUser = await userDao.retrieveUserById(updatedInfo);
-            // console.log(updatedUser);
-            // req.session.user = updatedUser;
-            // console.log(req.session.user);
-            // res.render("account");
+          
             res.redirect(`./account?message=Information for the user, ${context.username}, has been successfully updated!`);//tell client to reload page
             
         } catch (err) {
-            console.log(err);
+           
             res.redirect("./account?message=cannot update the user information!");
         }
 });

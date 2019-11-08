@@ -40,7 +40,7 @@
             <div class="jumbotron jumbotron-fluid py-0 mb-0 mt-4">
                 <div class="container fluid" style="background-color: white;">
                     <img src="/images/site/jumbotron-img.png" id="jumboimg" style="opacity: 1;">
-                    <h1 style="color: #FFBA08">Welcome to your new blog.</h1>
+                    <h1  style="color: #FFBA08">Welcome to your new blog.</h1>
                 </div>
             </div>
         </div>
@@ -48,11 +48,11 @@
 </div>
     
     {{!--Navigation --}}
-    <nav class="navbar navbar-expand-sm bg-warning justify-content-between">
+    <nav class="navbar navbar-expand-sm bg-warning justify-content-between sticky-top">
         <a class="navbar-brand" href="/blog" style="color: white">Home</a>
         <div class="dropdown">
             <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" style="margin-right: 20px;"><img width="40" src="./images/thumbnails/{{profile.image}}">{{user.username}}</button>
+                data-toggle="dropdown" style="margin-right: 20px;"><img style="margin-right: 20px;" width="40" src="./images/thumbnails/{{profile.image}}">{{user.username}}</button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="./myArticles">My articles</a>
                 <a class="dropdown-item" href="./account">Account</a>

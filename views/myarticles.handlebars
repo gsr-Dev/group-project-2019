@@ -2,7 +2,7 @@
     <div class="container d-flex justify-content-center" style="margin-top: 50px;">
         <div class="col-md-10 mx-auto">
             <p>You currently have {{totalArticles}} article(s).</p>
-            <a href="./addArticles" role="button" class="btn btn-warning">Add Articles</a>
+            <a href="./addArticles" role="button" class="btn btn-outline-warning">Add Articles</a>
         </div>
     </div>
 
@@ -14,7 +14,7 @@
                 <section class="card shadow-sm p-3 mb-5 bg-white rounded" data-aos="fade-down">
                 {{!-- <h1>{{this.title}}</h1> --}}
                 <a href="./individualArticle?message={{this.id}}" style="text-decoration: none">
-                <div class="card-header">
+                    <div class="card-header">
                     <h1>{{this.title}}</h1>
                     <h6>Author: {{this.username}}</h6>
                     <h6>{{this.date}}</h6>

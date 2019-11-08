@@ -55,7 +55,7 @@ router.post("/forgotpsw", async function (req, res) {
 
             req.session.username = sendEmail.username;
             req.session.email = email;
-            console.log(req.session.email);
+          
             res.redirect("/forgotpsw?message=A message has been sent to you by email with instructions on how to reset your password. (Please check your Junk Box too!)");
             //&#9989; 
         } else {
@@ -79,7 +79,6 @@ router.post("/resetpsw", async function (req, res) {
     const newPassword = req.body.newPassword;
     const reNewPassword = req.body.confirmPass;
     const sessionData = req.session.username;
-    console.log(sessionData);
 
     if (newPassword != reNewPassword.toString()) {
         console.log("password not the same");

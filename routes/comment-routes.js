@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 // The DAO that handles CRUD operations for users.
-const usersDao = require("../modules/users-dao.js");
 const articlesDao = require("../modules/articles-dao.js");
 const commentsDao = require('../modules/comment-dao.js');
 
@@ -20,11 +19,9 @@ router.get("/comments", async function (req, res) {
 
         const commentsByArticlesId = await commentsDao.getCommentsByArticlesId(articleID);
 
-        const avatar = await usersDao.retrieveAvatar(user.username);
     
 
         const context = {
-            profile:avatar,
             article: getArticleByID,
             comments:commentsByArticlesId,
             layout: "blogLayout"
@@ -43,7 +40,7 @@ router.post("/comments", async function (req, res) {
 
 
 
-    console.log(`user ${user} and articlesId ${articlesId} and content ${content}`);
+ 
     await commentsDao.createComments(user, content, articlesId);
     res.redirect(`./comments?message=${articlesId}`);
 });
@@ -51,9 +48,9 @@ router.post("/comments", async function (req, res) {
 router.post("/comments.delete", async function(req, res) {
 
     const commentID = req.body.commentID;
-    console.log(`commentID is ${commentID}`);
+  
     const articlesID = await commentsDao.getArticleByCommentId(commentID);
-    console.log(articlesID);
+
 
     await commentsDao.deleteComments(commentID);
     

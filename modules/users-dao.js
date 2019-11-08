@@ -94,8 +94,6 @@ async function verifyCredentials(username, password) {
 
     try {
         const user = await retrieveUserByUserName(username);
-        console.log(`verifyCredentials user ${username}`);
-        console.log(user);
         const isAuthenticated = passwordHash.verify(password, user.salthashpassword);
 
         if (isAuthenticated) {
@@ -106,7 +104,7 @@ async function verifyCredentials(username, password) {
         }
 
     } catch (err) {
-        console.log(`verifyCredentials error: ${err}`);
+        
         return null;
     }
 }
@@ -122,7 +120,7 @@ async function verifyCredentials(username, password) {
 async function updatePassword(newPassword, sessionData) {
     const db = await dbPromise;
     let hashedPassword = passwordHash.generate(newPassword);
-    console.log(hashedPassword);
+    
     await db.run(SQL` 
         update users 
         set password = ${newPassword},salthashpassword = ${hashedPassword}
