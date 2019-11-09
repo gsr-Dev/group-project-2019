@@ -76,7 +76,6 @@ router.post("/resetpsw", async function (req, res) {
     const sessionData = req.session.username;
 
     if (newPassword != reNewPassword.toString()) {
-        console.log("password not the same");
         res.redirect("./resetpsw?message=Password doesn't match, please try again. ");
     } else {
         try {

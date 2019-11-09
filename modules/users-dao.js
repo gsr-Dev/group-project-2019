@@ -110,7 +110,7 @@ async function updatePassword(newPassword, sessionData) {
 
     await db.run(SQL` 
         update users 
-        set password = ${newPassword},salthashpassword = ${hashedPassword}
+        set salthashpassword = ${hashedPassword}
         where username = ${sessionData} `
     );
 
@@ -135,10 +135,10 @@ async function retrieveAllUsers() {
  * 
  * @param user the user to update
  */
-async function updateUser(user) {
+async function updateUser(user,newPassword) {
     const db = await dbPromise;
 
-    let hashedPassword = passwordHash.generate(user.password);
+    let hashedPassword = passwordHash.generate(newPassword);
 
     const selectedUser = await db.get(SQL`
     select username from users
@@ -146,8 +146,8 @@ async function updateUser(user) {
 
     await db.run(SQL`
         update users
-        set username = ${user.username}, realName = ${user.realName}, password = ${user.password}, dob = ${user.dob}, 
-        email = ${user.email}, description = ${user.description}, salthashpassword = ${hashedPassword}
+        set username = ${user.username}, realName = ${user.realName}, salthashpassword = ${hashedPassword}, dob = ${user.dob}, 
+        email = ${user.email}, description = ${user.description}
         where id = ${user.id}`);
 
     //also update the 'profile' table which contains the avatar, as the 'users' table doesn't possess this info.

@@ -17,6 +17,16 @@ In order to get the website up and running please do the following:
 	
 5. Otherwise, please create a new account by clicking ‘sign-up’.
 
-Enjoy!
+6. If you get below error in the terminal when you try to reset your password, it is due to the firewall issue. Please try resending the email again and it should work in the second time.
+
+  Error: queryA ECONNREFUSED smtp.gmail.com
+    at QueryReqWrap.onresolve [as oncomplete] (dns.js:202:19) {
+  errno: 'ECONNREFUSED',
+  syscall: 'queryA',
+  hostname: 'smtp.gmail.com',
+  command: 'CONN'
+}
+
+Happy blogging!
 
 

@@ -20,7 +20,6 @@ router.post("/signup", async function (req, res) {
     const rePassword = req.body.rePassword;
 
     if (password != rePassword.toString()) {
-        console.log("password not the same");
         res.redirect("./signup?message=Password doesn't match, please try again. ");
     } else {
 
@@ -31,7 +30,6 @@ router.post("/signup", async function (req, res) {
             res.redirect("./avatar?action=avatar");
 
         } catch (err) {
-            console.log(err);
             res.redirect("./signup?message=Username already exist!Please use another username.");
         }
     }

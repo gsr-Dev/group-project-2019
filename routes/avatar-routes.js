@@ -83,10 +83,6 @@ router.post("/updateAvatar", upload.single("imageFile"), async function (req, re
         const newFileName = `./public/images/${fileInfo.originalname}`;
         fs.renameSync(oldFileName, newFileName);
 
-        // Create and save thumbnail
-        const image = await jimp.read(newFileName);
-        image.resize(320, jimp.AUTO);
-        await image.write(`./public/images/${fileInfo.originalname}`);
         selectedProfile = fileInfo.originalname;
 
     } else {
@@ -97,6 +93,12 @@ router.post("/updateAvatar", upload.single("imageFile"), async function (req, re
     if (selectedProfile == null) {
         res.redirect("/avatar?message=You must have a profile!");
     } else {
+
+        // Create and save thumbnail
+        const image = await jimp.read(`./public/images/${selectedProfile}`);
+        image.resize(320, jimp.AUTO);
+        await image.write(`./public/images/thumbnails/${selectedProfile}`);
+
         const username = req.session.user.username;
 
         await userDao.updateAvatar(username, selectedProfile);
